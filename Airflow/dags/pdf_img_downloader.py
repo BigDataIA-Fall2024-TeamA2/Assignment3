@@ -7,14 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
-
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 # Create folders for PDFs and Images
 os.makedirs('pdfs', exist_ok=True)
 os.makedirs('images', exist_ok=True)
@@ -135,6 +128,7 @@ def extract_article_details_and_files(url):
     return articles_data
 
 # Example usage
+# Modify the main block
 if __name__ == "__main__":
     url = "https://rpc.cfainstitute.org/en/research-foundation/publications#sort=%40officialz32xdate%20descending&numberOfResults=50&f:SeriesContent=[Research%20Foundation]"
     articles = extract_article_details_and_files(url)
