@@ -25,12 +25,20 @@ def convert_date(date_string):
 # Function to insert an article
 def insert_article(cursor, article):
     insert_query = """
+<<<<<<< HEAD
     INSERT INTO ARTICLES (A_ID, TITLE, DESCRIPTION, PUBLICATION_DATE, AUTHORS, PDF_URL, IMAGE_URL)
     VALUES (%s, %s, %s, %s, %s, %s, %s)
     """
     converted_date = convert_date(article['date'])
     cursor.execute(insert_query, (
         article['a_id'],
+=======
+    INSERT INTO ARTICLES (TITLE, DESCRIPTION, PUBLICATION_DATE, AUTHORS, PDF_URL, IMAGE_URL)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    converted_date = convert_date(article['date'])
+    cursor.execute(insert_query, (
+>>>>>>> b43788ea937a1d457848b9f08f52ee3c300b1cc3
         article['title'],
         article['description'],
         converted_date,
@@ -71,8 +79,11 @@ def insert_articles_from_json(json_file_path):
             # Create the table if it doesn't exist
             create_table_query = """
             CREATE TABLE IF NOT EXISTS ARTICLES (
+<<<<<<< HEAD
                 
                 A_ID INT,
+=======
+>>>>>>> b43788ea937a1d457848b9f08f52ee3c300b1cc3
                 TITLE STRING,
                 DESCRIPTION STRING,
                 PUBLICATION_DATE DATE,
@@ -103,6 +114,15 @@ def insert_articles_from_json(json_file_path):
         cursor.close()
         conn.close()
 
+<<<<<<< HEAD
+=======
+
+def get_all_articles():
+    get_query = """
+    SELECT ARTICLE_ID, 
+    """
+
+>>>>>>> b43788ea937a1d457848b9f08f52ee3c300b1cc3
 if __name__ == "__main__":
     # Specify the path to your JSON file
     json_file_path = r"D:\Projects\Assignment3\dags\updated_articles_data.json"

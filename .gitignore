@@ -171,3 +171,7 @@ logs
 
 #DS_Store
 .DS_Store
+
+# airflow docker folders
+airflow/
+

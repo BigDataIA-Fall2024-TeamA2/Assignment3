@@ -1,0 +1,29 @@
+# Ignore virtual environment files for Python
+venv
+
+# Ignore Python cache files
+__pycache__
+
+# Ignore Git version control system files
+.git
+
+# macOS specific files
+.DS_Store
+
+# Log files, temporary files, and swap files
+*.log
+*.tmp
+*.swp
+
+# JetBrains IDE configuration files
+.idea/
+
+# Visual Studio Code workspace settings and configurations
+.vscode/
+
+# Environment variable files
+.env
+
+# Dockerfiles and docker-compose files (to avoid building a Docker image inside the container)
+Dockerfile
+docker-compose.yml
