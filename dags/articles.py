@@ -100,6 +100,12 @@ def insert_articles_from_json(json_file_path):
         cursor.close()
         conn.close()
 
+
+def get_all_articles():
+    get_query = """
+    SELECT ARTICLE_ID, 
+    """
+
 if __name__ == "__main__":
     # Specify the path to your JSON file
     json_file_path = r"D:\Projects\Assignment3\dags\updated_articles_data.json"

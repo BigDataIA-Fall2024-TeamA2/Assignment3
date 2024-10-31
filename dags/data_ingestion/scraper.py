@@ -1,5 +1,8 @@
 import os
 import json
+import uuid
+from textwrap import indent
+
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -9,63 +12,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 
-chrome_options = Options()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
+from data_ingestion.utils import SCRAPED_RESOURCES_PATH, BASE_RESOURCES_PATH
 
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-# Create folders for PDFs and Images
-os.makedirs('pdfs', exist_ok=True)
-os.makedirs('images', exist_ok=True)
 
-def sanitize_filename(filename):
-    return filename.split('?')[0]
+def scrape_data(params: dict):
+    seed_url = params.get("seed_url")
 
-def download_file(url, folder):
-    try:
-        response = requests.get(url, stream=True)
-        response.raise_for_status()
-        file_name = os.path.join(folder, sanitize_filename(url.split('/')[-1]))
-        with open(file_name, 'wb') as file:
-            for chunk in response.iter_content(chunk_size=8192):
-                file.write(chunk)
-        print(f'Downloaded: {file_name}')
-    except Exception as e:
-        print(f'Error downloading {url}: {e}')
-
-def get_pdf_link(driver, article_url):
-    try:
-        driver.execute_script("window.open('');")
-        driver.switch_to.window(driver.window_handles[1])
-        driver.get(article_url)
-
-        pdf_link = None
-        links = driver.find_elements(By.TAG_NAME, 'a')
-        for link in links:
-            href = link.get_attribute('href')
-            if href and href.endswith('.pdf'):
-                pdf_link = href
-                break
-
-        driver.close()
-        driver.switch_to.window(driver.window_handles[0])
-
-        return pdf_link if pdf_link else "No PDF found"
-    except Exception as e:
-        print(f"Error finding PDF link: {e}")
-        driver.close()
-        driver.switch_to.window(driver.window_handles[0])
-        return "No PDF found"
-
-def extract_image_url(article):
-    try:
-        image_element = article.find_element(By.TAG_NAME, 'img')
-        return image_element.get_attribute('src') if image_element else 'No image'
-    except Exception:
-        return 'No image'
-
-def extract_article_details_and_files(url):
     options = webdriver.ChromeOptions()
     options.headless = True
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
@@ -73,7 +25,7 @@ def extract_article_details_and_files(url):
     articles_data = []
 
     try:
-        driver.get(url)
+        driver.get(seed_url)
 
         while True:
             WebDriverWait(driver, 10).until(
@@ -102,11 +54,12 @@ def extract_article_details_and_files(url):
                     image_url = extract_image_url(article)
 
                     if pdf_url and pdf_url != "No PDF found":
-                        download_file(pdf_url, 'pdfs')
-                    if image_url and image_url != 'No image':
-                        download_file(image_url, 'images')
+                        pdf_url = _download_file(pdf_url, 'pdfs')
+                    if image_url and image_url != "":
+                        image_url = _download_file(image_url, 'images')
 
                     articles_data.append({
+                        'id': uuid.uuid4(),
                         'title': title,
                         'description': description,
                         'date': date,
@@ -129,19 +82,62 @@ def extract_article_details_and_files(url):
                 print("No more pages or error navigating:", e)
                 break
 
+        with open(os.path.join(BASE_RESOURCES_PATH, "articles_data.json"), "w") as fp:
+            json.dump(articles_data, fp, indent=4)
+
     finally:
         driver.quit()
 
     return articles_data
 
-# Example usage
-if __name__ == "__main__":
-    url = "https://rpc.cfainstitute.org/en/research-foundation/publications#sort=%40officialz32xdate%20descending&numberOfResults=50&f:SeriesContent=[Research%20Foundation]"
-    articles = extract_article_details_and_files(url)
 
-    # Save the articles data to a JSON file
-    output_file = 'articles_data.json'
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(articles, f, ensure_ascii=False, indent=4)
+def get_pdf_link(driver, article_url):
+    try:
+        driver.execute_script("window.open('');")
+        driver.switch_to.window(driver.window_handles[1])
+        driver.get(article_url)
 
-    print(f"Articles data saved to {output_file}")
+        pdf_link = None
+        links = driver.find_elements(By.TAG_NAME, 'a')
+        for link in links:
+            href = link.get_attribute('href')
+            if href and href.endswith('.pdf'):
+                pdf_link = href
+                break
+
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
+
+        return pdf_link if pdf_link else "No PDF found"
+    except Exception as e:
+        print(f"Error finding PDF link: {e}")
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
+        return "No PDF found"
+
+
+def extract_image_url(article):
+    try:
+        image_element = article.find_element(By.TAG_NAME, 'img')
+        return image_element.get_attribute('src') if image_element else ""
+    except Exception:
+        return ""
+
+
+def sanitize_filename(filename):
+    return filename.split('?')[0]
+
+
+def _download_file(url: str, folder: str):
+    try:
+        response = requests.get(url, stream=True)
+        response.raise_for_status()
+
+        file_name = os.path.join(SCRAPED_RESOURCES_PATH, folder, sanitize_filename(url.split('/')[-1]))
+        with open(file_name, 'wb') as file:
+            for chunk in response.iter_content(chunk_size=8192):
+                file.write(chunk)
+        print(f'Downloaded: {file_name}')
+        return file_name
+    except Exception as e:
+        print(f'Error downloading {url}: {e}')
