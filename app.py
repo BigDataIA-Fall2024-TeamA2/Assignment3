@@ -2,7 +2,8 @@ import streamlit as st
 from dotenv import load_dotenv
 
 from frontend.pages.chat import qa_interface
-from frontend.pages.list_docs import list_documents
+from frontend.pages.document_viewer import document_viewer_page
+from frontend.pages.list_docs import list_docs_page
 from frontend.pages.user_creation import create_user
 from frontend.pages.user_login import login
 
@@ -52,7 +53,8 @@ def logout():
 # logout_page = st.Page(logout, title="Log Out", icon=":material/logout:")
 # user_creation_page = st.Page(create_user, title="User Registration")
 # qa_page = st.Page(qa_interface, title="Question Answering", icon=":material/chat:")
-docs_list = st.Page(list_documents, title="Explore Documents", icon="📃")
+docs_list = st.Page(list_docs_page, title="Explore Documents", icon="📃")
+doc_viewer = st.Page(document_viewer_page, title="Document Viewer")
 
 # if st.session_state.logged_in:
 #     pg = st.navigation({
