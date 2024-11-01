@@ -114,6 +114,7 @@ from frontend.pages.list_docs import list_docs_page
 from frontend.pages.document_viewer import document_viewer_page
 from frontend.pages.summary_generation import summary_generation_page
 from frontend.pages.chat import qa_interface
+from frontend.pages.reports import generate_research_report_page
 def main():
     # Load environment variables
     load_dotenv()
@@ -166,7 +167,7 @@ def main():
     st.sidebar.title("Navigation")
     nav_selection = st.sidebar.radio(
         "Go to",
-        ["Document List", "Document Viewer", "Summary Generation", "Question Answering"]
+        ["Document List", "Document Viewer", "Summary Generation", "Question Answering","Report Generation"]
     )
 
     # Update current view based on navigation
@@ -181,6 +182,8 @@ def main():
         summary_generation_page()
     elif st.session_state.current_view == "question_answering":
         qa_interface()
+    elif st.session_state.current_view == "user_creation":
+        generate_research_report_page()
 
 if __name__ == "__main__":
     main()

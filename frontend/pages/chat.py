@@ -1,14 +1,15 @@
 import streamlit as st
-from openai import OpenAI
-from backend.services.qa import process_qa_query, get_qa_history
-from backend.utilities.document_processors import get_pdf_documents
+import requests
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-from backend.config import settings  # Import the settings
+from backend.config import settings
 
 # Load environment variables from .env file
 load_dotenv()
+
+# API base URL
+API_BASE_URL = "http://localhost:8000/qa/{article_id}/qa"  # Adjust this to your FastAPI server address
 
 def qa_interface():
     st.title("Question Answering Interface")
@@ -31,19 +32,16 @@ def qa_interface():
     # Main interface
     st.subheader(f"Article #{article_id} Q&A")
 
-    # Get OpenAI model choices (you'll need to implement this function)
+    # Get OpenAI model choices
     openai_models_choice = st.selectbox("Choose an OpenAI model", ["gpt-3.5-turbo", "gpt-4"])
 
-    # Get context type choices (you'll need to implement this function)
+    # Get context type choices
     context_type_choice = st.selectbox("Choose context type", ["research", "general", "technical"])
 
-    # Display PDF content preview
+    # Display PDF content preview (you might need to implement this separately)
     if st.session_state.current_article_id:
-        with st.spinner("Loading PDF content..."):
-            pdf_content = get_pdf_documents(st.session_state.current_article_id)
         st.subheader("PDF Content Preview")
-        # Convert the list to a string before concatenating
-        st.text_area("PDF Content", "".join(pdf_content)[:500] + "...", height=150, disabled=True)
+        st.text("PDF content preview not implemented in this version.")
 
     st.divider()
 
@@ -60,35 +58,49 @@ def qa_interface():
 
         # Process the query
         with st.spinner("Thinking..."):
-            openai_client = OpenAI(api_key=settings.OPENAI_API_KEY)  # Use settings here
-            response = process_qa_query(
-                article_id=st.session_state.current_article_id,
-                question=prompt,
-                model=openai_models_choice,
-                context_type=context_type_choice,
-                openai_client=openai_client,
-                user_id=st.session_state.user_id
+            response = requests.post(
+                f"{API_BASE_URL}/chat/{st.session_state.current_article_id}/qa",
+                json={
+                    "question": prompt,
+                    "model": openai_models_choice,
+                    "context_type": context_type_choice
+                },
+                headers={"Authorization": f"Bearer {settings.JWT_SECRET_KEY}"}
             )
+
+            if response.status_code == 200:
+                qa_response = response.json()
+            else:
+                st.error(f"Error: {response.status_code} - {response.text}")
+                return
 
         # Display the response
         with st.chat_message("assistant"):
-            st.markdown(response.answer)
-            st.markdown(f"**Confidence:** {response.confidence_score}")
-            st.markdown(f"**Referenced Pages:** {', '.join(map(str, response.referenced_pages))}")
-            if response.media_references:
-                st.markdown(f"**Media References:** {', '.join(response.media_references)}")
+            st.markdown(qa_response["answer"])
+            st.markdown(f"**Confidence:** {qa_response['confidence_score']}")
+            st.markdown(f"**Referenced Pages:** {', '.join(map(str, qa_response['referenced_pages']))}")
+            if qa_response['media_references']:
+                st.markdown(f"**Media References:** {', '.join(qa_response['media_references'])}")
 
-        st.session_state.messages.append({"role": "assistant", "content": response.answer})
+        st.session_state.messages.append({"role": "assistant", "content": qa_response["answer"]})
 
     # Display chat history
     st.sidebar.title("Chat History")
     if st.sidebar.button("Load Chat History"):
-        history = get_qa_history(st.session_state.current_article_id, st.session_state.user_id)
-        for item in history:
-            st.sidebar.markdown(f"**Q:** {item['question']}")
-            st.sidebar.markdown(f"**A:** {item['answer']}")
-            st.sidebar.markdown(f"**Time:** {item['created_at']}")
-            st.sidebar.markdown("---")
+        response = requests.get(
+            f"{API_BASE_URL}/chat/{st.session_state.current_article_id}/history",
+            headers={"Authorization": f"Bearer {settings.JWT_SECRET_KEY}"}
+        )
+
+        if response.status_code == 200:
+            history = response.json()
+            for item in history:
+                st.sidebar.markdown(f"**Q:** {item['question']}")
+                st.sidebar.markdown(f"**A:** {item['answer']}")
+                st.sidebar.markdown(f"**Time:** {item['created_at']}")
+                st.sidebar.markdown("---")
+        else:
+            st.sidebar.error(f"Error loading chat history: {response.status_code} - {response.text}")
 
 if __name__ == "__main__":
     qa_interface()
