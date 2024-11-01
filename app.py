@@ -98,7 +98,7 @@ def main():
                 "User Creation": [user_creation_page],
             }
         )
-
+    st.session_state.messages = []
     pg.run()
 
 

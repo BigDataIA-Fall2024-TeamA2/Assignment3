@@ -12,7 +12,6 @@ from dags.data_ingestion.utils import fetch_file_from_s3
 from frontend.utils.auth import make_authenticated_request
 
 load_dotenv()
-st.session_state.messages = []
 
 
 def display_pdf(pdf_file):
@@ -80,4 +79,5 @@ def qa_interface():
 
 
 if __name__ == "__main__":
+    st.session_state.messages = []
     qa_interface()

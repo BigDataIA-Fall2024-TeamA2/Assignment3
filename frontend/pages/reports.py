@@ -8,6 +8,7 @@ import PyPDF2
 import io
 import base64
 
+from dags.data_ingestion.utils import fetch_file_from_s3
 from frontend.utils.auth import make_authenticated_request
 
 load_dotenv()
@@ -47,6 +48,11 @@ def generate_report_interface():
 
         # Display PDF content preview
         st.subheader("PDF Content Preview")
+        with st.spinner("Loading PDF"):
+            pdf_path = fetch_file_from_s3(doc["pdf_url"], None)
+            with open(pdf_path, "rb") as f:
+                content = f.read()
+            display_pdf(io.BytesIO(content))
 
         st.divider()
 
