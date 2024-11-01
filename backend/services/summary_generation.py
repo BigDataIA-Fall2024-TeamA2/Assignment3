@@ -9,7 +9,12 @@ from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
 
 # from backend.utils.document_processors import load_data_from_directory
+# from backend.utils.nvidia_utils import set_environment_variables
 from backend.config import settings
+
+from backend.utilities.document_processors import load_data_from_directory, load_pdf_file
+from backend.utilities.nvidia_utils import (describe_image, is_graph, process_graph, extract_text_around_item,
+    process_text_blocks, save_uploaded_file )
 
 
 class DocumentSummarizer:
@@ -20,7 +25,7 @@ class DocumentSummarizer:
         """Initialize LlamaIndex settings with NVIDIA models"""
         Settings.embed_model = NVIDIAEmbedding(model="nvidia/nv-embedqa-e5-v5", truncate="END")
         Settings.llm = NVIDIA(model="mistralai/mistral-7b-instruct-v0.3", nvidia_api_key=settings.NVIDIA_API_KEY )
-        Settings.text_splitter = SentenceSplitter(chunk_size=600)
+        Settings.text_splitter = SentenceSplitter(chunk_size=900)
 
     def create_index(self, documents):
         vector_store = MilvusVectorStore(
@@ -58,7 +63,9 @@ class DocumentSummarizer:
         #
         # print("Generating summary...")
         # summary = self.generate_summary(index, summary_length)
-        
+        documents = load_pdf_file(directory_path)
+        print(f"Found {len(documents)} documents")
+
         # return summary
         return ""
 

@@ -74,4 +74,4 @@ async def authenticate_refresh_token(token: str) -> Token | None:
             user_id=payload["user_id"], password_timestamp=payload["password_timestamp"]
         ):
             return await generate_token(user)
-    return Noneq
+    return None

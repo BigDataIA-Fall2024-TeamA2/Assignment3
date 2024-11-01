@@ -1,60 +1,106 @@
 import streamlit as st
+import requests
+from datetime import datetime
+from dotenv import load_dotenv
+import os
+from backend.config import settings
 
-from frontend.utils.chat import get_openai_model_choices, get_extraction_mechanism_choices, get_unique_pdf_filenames, \
-    ask_question, get_file_content_from_backend
+# Load environment variables from .env file
+load_dotenv()
 
+# API base URL
+API_BASE_URL = "http://localhost:8000/qa/{article_id}/qa"  # Adjust this to your FastAPI server address
 
 def qa_interface():
     st.title("Question Answering Interface")
 
     # Initialize session state variables
-    if 'answer_generated' not in st.session_state:
-        st.session_state.answer_generated = False
-    if 'user_question' not in st.session_state:
-        st.session_state.user_question = ""
+    if 'messages' not in st.session_state:
+        st.session_state.messages = []
+    if 'current_article_id' not in st.session_state:
+        st.session_state.current_article_id = None
+    if 'user_id' not in st.session_state:
+        st.session_state.user_id = 1  # Replace with actual user authentication
 
-    openai_models_choice = st.selectbox("Choose an OpenAI model", get_openai_model_choices())
-    extraction_mechanism_choice = st.selectbox("Choose a PDF extraction method", get_extraction_mechanism_choices())
-    pdf_file_choice = st.selectbox("Choose a PDF file", get_unique_pdf_filenames())
+    # Sidebar for article selection
+    st.sidebar.title("Research Assistant")
+    article_id = st.sidebar.number_input("Enter Article ID", min_value=1, step=1)
+    if article_id != st.session_state.current_article_id:
+        st.session_state.current_article_id = article_id
+        st.session_state.messages = []
+
+    # Main interface
+    st.subheader(f"Article #{article_id} Q&A")
+
+    # Get OpenAI model choices
+    openai_models_choice = st.selectbox("Choose an OpenAI model", ["gpt-3.5-turbo", "gpt-4"])
+
+    # Get context type choices
+    context_type_choice = st.selectbox("Choose context type", ["research", "general", "technical"])
+
+    # Display PDF content preview (you might need to implement this separately)
+    if st.session_state.current_article_id:
+        st.subheader("PDF Content Preview")
+        st.text("PDF content preview not implemented in this version.")
 
     st.divider()
 
-    # if pdf_file_choice:
-        # pdf_file_obj = get_pdf_object_from_db(pdf_file_choice, extraction_mechanism_choice)
+    # Display chat messages
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
 
-    if all([openai_models_choice, extraction_mechanism_choice, pdf_file_choice]):
-        pdf_content = get_file_content_from_backend(pdf_file_choice, openai_models_choice, extraction_mechanism_choice)
-        st.subheader("PDF Content Preview")
-        st.text_area("PDF Content", pdf_content + "...", height=150, disabled=True)
+    # Chat input
+    if prompt := st.chat_input("Ask a question about the article"):
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
 
-        st.divider()
+        # Process the query
+        with st.spinner("Thinking..."):
+            response = requests.post(
+                f"{API_BASE_URL}/chat/{st.session_state.current_article_id}/qa",
+                json={
+                    "question": prompt,
+                    "model": openai_models_choice,
+                    "context_type": context_type_choice
+                },
+                headers={"Authorization": f"Bearer {settings.JWT_SECRET_KEY}"}
+            )
 
-        st.subheader(f"Ask a Question")
-        user_question = st.text_area(f"Enter a question about your PDF ({pdf_file_choice})", height=100, key="question_input", value=st.session_state.user_question)
-
-        if st.button("Generate Answer"):
-            if user_question:
-                with st.spinner("Generating answer..."):
-                    answer = ask_question(user_question, openai_models_choice, extraction_mechanism_choice, pdf_file_choice)
-                    st.subheader("Answer")
-                    st.write(answer)
-                    st.session_state.answer_generated = True
-                    st.session_state.user_question = ""  # Clear the question input
-
-                    st.divider()
+            if response.status_code == 200:
+                qa_response = response.json()
             else:
-                st.warning("Please enter a question!")
+                st.error(f"Error: {response.status_code} - {response.text}")
+                return
 
-        # Display a new question input if an answer was generated
-        if st.session_state.answer_generated:
-            st.subheader("Ask Another Question")
-            new_question = st.text_area("Enter your next question", height=100, key="new_question_input")
-            if st.button("Generate New Answer"):
-                if new_question:
-                    with st.spinner("Generating answer..."):
-                        new_answer = ask_question(new_question, openai_models_choice, extraction_mechanism_choice, pdf_file_choice)
-                        st.subheader("New Answer")
-                        st.write(new_answer)
-                        st.session_state.user_question = new_question  # Store the new question
-                else:
-                    st.warning("Please enter a new question!")
+        # Display the response
+        with st.chat_message("assistant"):
+            st.markdown(qa_response["answer"])
+            st.markdown(f"**Confidence:** {qa_response['confidence_score']}")
+            st.markdown(f"**Referenced Pages:** {', '.join(map(str, qa_response['referenced_pages']))}")
+            if qa_response['media_references']:
+                st.markdown(f"**Media References:** {', '.join(qa_response['media_references'])}")
+
+        st.session_state.messages.append({"role": "assistant", "content": qa_response["answer"]})
+
+    # Display chat history
+    st.sidebar.title("Chat History")
+    if st.sidebar.button("Load Chat History"):
+        response = requests.get(
+            f"{API_BASE_URL}/chat/{st.session_state.current_article_id}/history",
+            headers={"Authorization": f"Bearer {settings.JWT_SECRET_KEY}"}
+        )
+
+        if response.status_code == 200:
+            history = response.json()
+            for item in history:
+                st.sidebar.markdown(f"**Q:** {item['question']}")
+                st.sidebar.markdown(f"**A:** {item['answer']}")
+                st.sidebar.markdown(f"**Time:** {item['created_at']}")
+                st.sidebar.markdown("---")
+        else:
+            st.sidebar.error(f"Error loading chat history: {response.status_code} - {response.text}")
+
+if __name__ == "__main__":
+    qa_interface()
