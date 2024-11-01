@@ -26,6 +26,6 @@ class ArticleSummaryRequest(BaseModel):
 
 
 class ArticleSummaryResponse(BaseModel):
-    article_id: int
+    article_id: str
     title: str
     summary: str

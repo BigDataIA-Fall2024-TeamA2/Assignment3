@@ -34,8 +34,8 @@ llama-index-llms-nvidia = "^0.2.6"
 llama-index-embeddings-nvidia = "^0.2.4"
 python-pptx = "^1.0.2"
 diagrams = "^0.23.4"
+selenium = "^4.26.1"
 pypdf2 = "^3.0.1"
-black = "^24.10.0"
 
 
 [tool.poetry.group.dev.dependencies]

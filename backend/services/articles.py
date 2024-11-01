@@ -7,7 +7,7 @@ from sqlalchemy import select
 from backend.database import db_session
 from backend.database.articles import ArticleModel
 from backend.services.summary_generation import DocumentSummarizer
-
+from frontend.pages.document_viewer import fetch_pdf_from_s3
 # from backend.schemas.articles import ArticleCreate
 
 logger = logging.getLogger(__name__)
@@ -68,30 +68,25 @@ async def _generate_summary(article_id: str) -> Optional[str]:
         with db_session() as session:
             article = await _get_article(article_id)
             if not article:
-
                 return None
 
             # Here you would call the NVIDIA service
             # For now, we'll return a mock summary
             summarizer = DocumentSummarizer()
 
-            # List of directories to process
-            document_directories = [
-                "/Users/pranalichipkar/Documents/Pranali/BigData-Assignments/Assignment3/backend/data/"
-            ]
-
             # Process each directory
-            for directory in document_directories:
-                print(f"\nProcessing directory: {directory}")
-                try:
-                    summary = summarizer.summarize_directory(
-                        directory_path=directory,
-                        summary_length="medium",  # Options: "short", "medium", "long"
-                    )
-                    print(summary)
-                except Exception as e:
-                    print(f"Error processing directory {directory}: {str(e)}")
+            print(f"\nProcessing article: {article}")
 
+            pdf_path = fetch_pdf_from_s3(article.pdf_url)
+            try:
+                summary = summarizer.summarize_directory(
+                    directory_path=pdf_path,
+                    summary_length="medium"  # Options: "short", "medium", "long"
+                )
+                print(summary)
+            except Exception as e:
+                print(f"Error processing directory {pdf_path}: {str(e)}")
+            
             # Update the article with the new summary
             # article.summary = summary
             # session.commit()

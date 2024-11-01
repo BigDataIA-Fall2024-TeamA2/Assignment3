@@ -8,8 +8,8 @@ from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
 from llama_index.vector_stores.milvus import MilvusVectorStore
 
-# from backend.utils.document_processors import load_data_from_directory
-# from backend.utils.nvidia_utils import set_environment_variables
+from backend.utilities.document_processors import load_data_from_directory, load_pdf_file
+
 from backend.config import settings
 
 
@@ -45,8 +45,8 @@ class DocumentSummarizer:
             "medium": "Provide a comprehensive paragraph summarizing the key points and main ideas in the document.",
             "long": "Provide a detailed summary of the document, including main points, key details, and important conclusions.",
         }
-
-        prompt = length_prompts.get(doc_length, length_prompts["short"])
+        
+        prompt = length_prompts.get(doc_length, length_prompts["medium"])
         query_engine = index.as_query_engine(similarity_top_k=1)
         print(query_engine)
         response = query_engine.query(prompt)
@@ -55,20 +55,20 @@ class DocumentSummarizer:
 
     def summarize_directory(self, directory_path, summary_length="medium"):
         """Process a directory of documents and generate a summary"""
-        print(f"Processing documents from directory: {directory_path}")
-        # documents = load_data_from_directory(directory_path)
-        # print(f"Found {len(documents)} documents")
-        #
-        # print("Creating document index...")
-        # index = self.create_index(documents)
-        #
-        # print("Generating summary...")
-        # summary = self.generate_summary(index, summary_length)
-        # documents = load_pdf_file(directory_path)
-        # print(f"Found {len(documents)} documents")
 
-        # return summary
-        return ""
+        print(f"Processing documents from directory: {directory_path}")
+        documents = load_pdf_file(directory_path)
+        print(f"Found {len(documents)} documents")
+
+        print("Creating document index...")
+        index = self.create_index(documents)
+
+        print("Generating summary...")
+        summary = self.generate_summary(index, summary_length)
+        documents = load_pdf_file(directory_path)
+        print(f"Found {len(documents)} documents")
+
+        return summary
 
 
 def main():
