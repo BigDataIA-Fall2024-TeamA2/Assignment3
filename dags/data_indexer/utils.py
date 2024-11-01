@@ -1,9 +1,10 @@
-import os
 import base64
-import fitz
+import os
 from io import BytesIO
-from PIL import Image
+
+import fitz
 import requests
+from PIL import Image
 from llama_index.llms.nvidia import NVIDIA
 
 

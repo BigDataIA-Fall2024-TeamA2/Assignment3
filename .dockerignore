@@ -26,4 +26,4 @@ __pycache__
 
 # Dockerfiles and docker-compose files (to avoid building a Docker image inside the container)
 Dockerfile
-docker-compose.yml
+docker-compose-airflow.yml

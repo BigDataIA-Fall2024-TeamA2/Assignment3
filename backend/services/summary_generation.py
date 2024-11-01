@@ -8,9 +8,8 @@ from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
 from llama_index.vector_stores.milvus import MilvusVectorStore
 
-from backend.utilities.document_processors import load_data_from_directory, load_pdf_file
-
 from backend.config import settings
+from backend.utilities.document_processors import load_pdf_file
 
 
 class DocumentSummarizer:

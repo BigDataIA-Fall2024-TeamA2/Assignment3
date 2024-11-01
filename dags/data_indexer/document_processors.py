@@ -1,12 +1,15 @@
 import os
-import fitz
-from pptx import Presentation
 import subprocess
+
+import fitz
 from llama_index.core import Document
+from pptx import Presentation
+
 from dags.data_indexer.utils import (
     describe_image, is_graph, process_graph, extract_text_around_item,
     process_text_blocks, save_uploaded_file
 )
+
 
 def get_pdf_documents(pdf_file):
     """Process a PDF file and extract text, tables, and images."""

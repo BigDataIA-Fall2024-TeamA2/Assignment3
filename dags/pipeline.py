@@ -1,10 +1,10 @@
-from datetime import datetime, timedelta
-from airflow import DAG
-from airflow.operators.python_operator import PythonOperator
-
 import os
+from datetime import datetime, timedelta
+
+from airflow.operators.python_operator import PythonOperator
 from dotenv import load_dotenv
 
+from airflow import DAG
 from data_ingestion.scraper import scrape_data
 
 # Load environment variables

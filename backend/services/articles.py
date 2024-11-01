@@ -1,4 +1,3 @@
-# articles/services.py
 import logging
 from typing import Optional, List
 
@@ -7,32 +6,8 @@ from sqlalchemy import select
 from backend.database import db_session
 from backend.database.articles import ArticleModel
 from backend.services.summary_generation import DocumentSummarizer
-from frontend.pages.document_viewer import fetch_pdf_from_s3
-# from backend.schemas.articles import ArticleCreate
 
 logger = logging.getLogger(__name__)
-
-# async def _create_article(article: ArticleCreate) -> Optional[ArticleModel]:
-#     """
-#     Create a new article in the database.
-#     """
-#     try:
-#         with db_session() as session:
-#             article_dict = article.dict(exclude_none=True)
-#             new_article = ArticleModel(**article_dict)
-#             session.add(new_article)
-#             session.flush()
-#             session.commit()
-#             session.refresh(new_article)
-#             return new_article
-#     except SQLAlchemyError as e:
-#         logger.error(f"Database error creating article: {str(e)}", exc_info=True)
-#         session.rollback()
-#         return None
-#     except Exception as e:
-#         logger.error(f"Unexpected error creating article: {str(e)}", exc_info=True)
-#         session.rollback()
-#         return None
 
 
 async def _get_article(article_id: str) -> Optional[ArticleModel]:
@@ -77,7 +52,8 @@ async def _generate_summary(article_id: str) -> Optional[str]:
             # Process each directory
             print(f"\nProcessing article: {article}")
 
-            pdf_path = fetch_pdf_from_s3(article.pdf_url)
+            # pdf_path = fetch_pdf_from_s3(article.pdf_url)
+            pdf_path = fetch_file_from_s3(article.pdf_url, None)
             try:
                 summary = summarizer.summarize_directory(
                     directory_path=pdf_path,

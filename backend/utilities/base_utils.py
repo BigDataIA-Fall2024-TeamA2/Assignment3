@@ -2,11 +2,16 @@ import logging
 import os
 
 import boto3
+from botocore.exceptions import ClientError
 from passlib.context import CryptContext
 
 from backend.config import settings
 
 LOCAL_EXTRACTS_DIRECTORY = os.path.join("resources", "extracts")
+BASE_RESOURCES_PATH = os.path.join("resources")
+SCRAPED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "scraped")
+CACHED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "cached")
+
 
 logger = logging.getLogger(__name__)
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -32,16 +37,35 @@ def get_s3_client():
         region_name=settings.AWS_REGION,
     )
 
+def load_s3_bucket():
+    bucket = os.environ.get("AWS_S3_BUCKET")
+    if bucket:
+        return bucket
+    raise ValueError("Missing AWS S3 Bucket")
 
-# def get_openai_client() -> OpenAI:
-#     """
-#     Creates and returns an OpenAI client instance using API key from settings
 
-#     Returns:
-#         OpenAI: Configured OpenAI client instance
-#     """
-#     api_key = settings.OPENAI_API_KEY
-#     if not api_key:
-#         raise ValueError("OPENAI_API_KEY not found in settings")
+def fetch_file_from_s3(key: str, dest_filename: str | None):
+    s3_client = get_s3_client()
 
-#     return OpenAI(api_key=api_key)
+    filename = (
+        os.path.basename(key)
+        if not dest_filename
+        else f"{dest_filename}{os.path.splitext(key)[1]}"
+    )
+    local_filepath = os.path.join(CACHED_RESOURCES_PATH, filename)
+    # Check locally before downloading
+    if os.path.exists(local_filepath):
+        return local_filepath
+    else:
+        try:
+            _ = s3_client.head_object(Bucket=load_s3_bucket(), Key=key)
+            s3_client.download_file(load_s3_bucket(), key, local_filepath)
+            logger.info(f"Downloaded file {key} from S3")
+            return local_filepath
+        except ClientError as e:
+            if e.response["Error"]["Code"] == "404":  # File not found
+                logger.error(f"File {key} not found on S3")
+                return False
+            else:
+                logger.error("")
+                return False

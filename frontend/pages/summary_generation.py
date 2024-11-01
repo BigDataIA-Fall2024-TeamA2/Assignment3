@@ -1,8 +1,8 @@
-import streamlit as st
-import requests
 from typing import Optional
 
-# Constants
+import requests
+import streamlit as st
+
 API_BASE_URL = "http://localhost:8000"
 
 def generate_summary(article_id: int) -> Optional[dict]:

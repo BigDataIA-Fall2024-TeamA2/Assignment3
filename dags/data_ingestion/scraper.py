@@ -1,18 +1,16 @@
-import os
 import json
-import uuid
-import time
 import logging
-from urllib.parse import urlparse
+import os
+import time
+import uuid
 
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
 
 from dags.data_ingestion.utils import SCRAPED_RESOURCES_PATH, BASE_RESOURCES_PATH
 

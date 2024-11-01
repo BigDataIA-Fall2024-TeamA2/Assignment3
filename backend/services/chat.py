@@ -5,7 +5,7 @@ from typing import List
 from backend.database import db_session
 from backend.database.qa import QAHistory
 from backend.database.research_notes import ResearchNotes
-from backend.schemas.qa import QAResponse, ReportResponse
+from backend.schemas.qa import QAResponse
 from backend.services.rag import get_chat_engine, get_report_engine
 
 
@@ -65,7 +65,7 @@ async def generate_research_report(
 ):
     """Generate a research report from multiple questions"""
     report_engine = get_report_engine(user_id, article_id, model)
-    response = report_engine.generate(prompt)
+    response = report_engine.chat(prompt)
     formatted_response = response.response
 
     # Store report
@@ -83,29 +83,39 @@ async def generate_research_report(
         session.add(report)
         session.commit()
         session.refresh(report)
-    return formatted_response
+    return {
+        "response": formatted_response,
+        "report_id": report.id,
+    }
 
 
-# async def index_report(
-#     article_id: int, report_id: int, user_id: int
-# ) -> Tuple[str, str]:
-#     """Validate and index a report"""
-#     with db_session() as session:
-#         report = (
-#             session.query(ResearchReport)
-#             .filter(
-#                 ResearchReport.report_id == report_id,
-#                 ResearchReport.article_id == article_id,
-#                 ResearchReport.user_id == user_id,
-#             )
-#             .first()
-#         )
-#
-#         if not report:
-#             return "error", "Report not found"
-#
-#         report.validated = True
-#         report.indexed = True
-#         session.commit()
-#
-#         return "success", "Report validated and indexed"
+async def index_report(
+    article_id: str, report_id: int, user_id: int
+):
+    """Validate and index a report"""
+    with db_session() as session:
+        report = (
+            session.query(ResearchNotes)
+            .filter(ResearchNotes.id == report_id)
+            .first()
+        )
+
+        if not report:
+            # Store report
+            report = ResearchNotes(
+                id=uuid.uuid4().hex,
+                a_id=article_id,
+                question="",
+                answer="",
+                model="",
+                referenced_pages="",
+                validated=False,
+            )
+            session.add(report)
+            session.commit()
+            session.refresh(report)
+
+        report.validated = True
+        session.commit()
+
+        return "success", "Report validated and indexed"

@@ -1,8 +1,9 @@
-import os
 import json
-from dotenv import load_dotenv
-import snowflake.connector
+import os
 from datetime import datetime
+
+import snowflake.connector
+from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()

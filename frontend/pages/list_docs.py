@@ -1,13 +1,14 @@
+import base64
+import io
+import os
+
 import requests
 import streamlit as st
 from PIL import Image
-import io
-import base64
 from dotenv import load_dotenv
-import os
 
-from dags.data_ingestion.utils import fetch_file_from_s3
-from frontend.utils.auth import make_unauthenticated_request, make_authenticated_request
+from frontend.utils.chat import fetch_file_from_s3
+from frontend.utils.auth import make_authenticated_request
 
 # Load environment variables from .env file if present
 load_dotenv()

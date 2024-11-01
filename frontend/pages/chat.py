@@ -1,14 +1,10 @@
-import streamlit as st
-import requests
-from datetime import datetime
-from dotenv import load_dotenv
-import os
-from backend.config import settings
-import PyPDF2
-import io
 import base64
+import io
 
-from dags.data_ingestion.utils import fetch_file_from_s3
+import streamlit as st
+from dotenv import load_dotenv
+
+from frontend.utils.chat import fetch_file_from_s3
 from frontend.utils.auth import make_authenticated_request
 
 load_dotenv()

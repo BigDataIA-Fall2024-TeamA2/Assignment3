@@ -1,14 +1,13 @@
 import streamlit as st
 from dotenv import load_dotenv
 
-from frontend.pages import list_docs
-from frontend.pages.list_docs import list_docs_page
-from frontend.pages.document_viewer import document_viewer_page
-from frontend.pages.summary_generation import summary_generation_page
 from frontend.pages.chat import qa_interface
+from frontend.pages.document_viewer import document_viewer_page
+from frontend.pages.list_docs import list_docs_page
 from frontend.pages.reports import generate_report_interface
 from frontend.pages.user_creation import create_user
 from frontend.pages.user_login import login
+from frontend.utils.chat import ensure_resource_dir_exists
 
 
 def main():
@@ -99,6 +98,7 @@ def main():
             }
         )
     st.session_state.messages = []
+    ensure_resource_dir_exists()
     pg.run()
 
 

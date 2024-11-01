@@ -1,11 +1,18 @@
 import logging
+import os
 from functools import lru_cache
 
+import boto3
 import streamlit as st
+from botocore.exceptions import ClientError
 
 from frontend.utils.auth import make_authenticated_request, make_unauthenticated_request
 
 logger = logging.getLogger(__name__)
+
+BASE_RESOURCES_PATH = os.path.join("resources")
+SCRAPED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "scraped")
+CACHED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "cached")
 
 
 @lru_cache
@@ -100,3 +107,60 @@ def verify_valid_chat(filename: str, model: str, extraction_mechanism: str):
         )
         if filename != chat_session["filename"]:
             initiate_chat(model, extraction_mechanism, filename)
+
+
+def load_aws_tokens():
+    required_keys = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"]
+    if all(key in os.environ for key in required_keys):
+        return {
+            "aws_access_key_id": os.environ["AWS_ACCESS_KEY_ID"],
+            "aws_secret_access_key": os.environ["AWS_SECRET_ACCESS_KEY"],
+            "region_name": os.environ["AWS_REGION"],
+        }
+    raise ValueError("Missing AWS Credentials in environment")
+
+
+def load_s3_bucket():
+    bucket = os.environ.get("AWS_S3_BUCKET")
+    if bucket:
+        return bucket
+    raise ValueError("Missing AWS S3 Bucket")
+
+
+@lru_cache
+def get_s3_client():
+    return boto3.client("s3", **load_aws_tokens())
+
+def fetch_file_from_s3(key: str, dest_filename: str | None):
+    s3_client = get_s3_client()
+
+    filename = (
+        os.path.basename(key)
+        if not dest_filename
+        else f"{dest_filename}{os.path.splitext(key)[1]}"
+    )
+    local_filepath = os.path.join(CACHED_RESOURCES_PATH, filename)
+    # Check locally before downloading
+    if os.path.exists(local_filepath):
+        return local_filepath
+    else:
+        try:
+            _ = s3_client.head_object(Bucket=load_s3_bucket(), Key=key)
+            s3_client.download_file(load_s3_bucket(), key, local_filepath)
+            logger.info(f"Downloaded file {key} from S3")
+            return local_filepath
+        except ClientError as e:
+            if e.response["Error"]["Code"] == "404":  # File not found
+                logger.error(f"File {key} not found on S3")
+                return False
+            else:
+                logger.error("")
+                return False
+
+def _ensure_directory_exists(directory):
+    os.makedirs(directory, exist_ok=True)
+
+
+def ensure_resource_dir_exists():
+    _ensure_directory_exists(os.path.join(CACHED_RESOURCES_PATH, "pdfs"))
+    _ensure_directory_exists(os.path.join(CACHED_RESOURCES_PATH, "images"))

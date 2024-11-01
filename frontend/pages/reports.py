@@ -1,14 +1,11 @@
-import streamlit as st
-import requests
-from datetime import datetime
-from dotenv import load_dotenv
-import os
-from backend.config import settings
-import PyPDF2
-import io
 import base64
+import io
+import uuid
 
-from dags.data_ingestion.utils import fetch_file_from_s3
+import streamlit as st
+from dotenv import load_dotenv
+
+from frontend.utils.chat import fetch_file_from_s3
 from frontend.utils.auth import make_authenticated_request
 
 load_dotenv()
@@ -20,10 +17,10 @@ if 'responses_feedback' not in st.session_state:
     st.session_state.responses_feedback = {}
 
 
-def handle_feedback(response_idx, feedback):
+def handle_feedback(response_idx, feedback, article_id: str, report_id: str):
     """Handle the accept/deny feedback for a response"""
     st.session_state.responses_feedback[response_idx] = feedback
-    # Here you can add API calls to store feedback in your backend
+    make_authenticated_request(f"/chat/{article_id}/{report_id}/index", "POST", data={"feedback": feedback})
     st.toast(f"Response marked as {feedback}")
 
 
@@ -74,7 +71,7 @@ def generate_report_interface():
                                                   type="primary" if current_feedback == "accepted" else "secondary",
                                                   disabled=current_feedback is not None)
                         if accept_button:
-                            handle_feedback(idx, "accepted")
+                            handle_feedback(idx, "accepted", doc["a_id"], st.session_state.get("report_id", ""))
 
                     with col2:
                         deny_button = st.button("✗ Deny",
@@ -82,7 +79,7 @@ def generate_report_interface():
                                                 type="primary" if current_feedback == "denied" else "secondary",
                                                 disabled=current_feedback is not None)
                         if deny_button:
-                            handle_feedback(idx, "denied")
+                            handle_feedback(idx, "denied", doc["a_id"], st.session_state.get("report_id", ""))
 
         # Chat input
         if prompt := st.chat_input("Ask an analytical question to generate reports:"):
@@ -98,6 +95,7 @@ def generate_report_interface():
                     "question": prompt,
                 }
                 response = make_authenticated_request(f"/chat/{article_id}/qa", "POST", data)
+                st.session_state.report_id = response.get("report_id", uuid.uuid4().hex)
 
             # Display the response
             with st.chat_message("assistant"):

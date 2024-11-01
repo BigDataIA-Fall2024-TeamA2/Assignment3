@@ -1,7 +1,7 @@
-import os
 import json
-from urllib.parse import urlparse
 import logging
+import os
+from urllib.parse import urlparse
 
 from dags.data_ingestion.utils import (
     upload_file_to_s3,

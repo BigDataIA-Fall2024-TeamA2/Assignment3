@@ -1,12 +1,13 @@
-from diagrams import Cluster, Diagram
-from diagrams.generic.storage import Storage
-from diagrams.programming.language import Python
 from diagrams.aws.storage import S3
-from diagrams.saas.analytics import Snowflake
 from diagrams.custom import Custom
+from diagrams.generic.storage import Storage
 from diagrams.onprem.workflow import Airflow
-from diagrams.programming.framework import Fastapi
 from diagrams.programming.flowchart import Action
+from diagrams.programming.framework import Fastapi
+from diagrams.programming.language import Python
+from diagrams.saas.analytics import Snowflake
+
+from diagrams import Cluster, Diagram
 
 
 # Define custom icons for Streamlit and NVIDIA services
