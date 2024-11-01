@@ -1,74 +1,107 @@
 import streamlit as st
 import requests
-from backend.config import settings  # Import settings for JWT token
+from datetime import datetime
+from dotenv import load_dotenv
+import os
+from backend.config import settings
+import PyPDF2
+import io
+import base64
+
+from frontend.utils.auth import make_authenticated_request
+
+load_dotenv()
+
+# Initialize session states
+if 'reports' not in st.session_state:
+    st.session_state.reports = []
+if 'responses_feedback' not in st.session_state:
+    st.session_state.responses_feedback = {}
 
 
-def generate_research_report_page():
-    st.title("Generate Research Report")
+def handle_feedback(response_idx, feedback):
+    """Handle the accept/deny feedback for a response"""
+    st.session_state.responses_feedback[response_idx] = feedback
+    # Here you can add API calls to store feedback in your backend
+    st.toast(f"Response marked as {feedback}")
 
-    # Form for user input
-    with st.form(key="report_form"):
-        article_id = st.number_input("Article ID", min_value=1, step=1)
-        questions = st.text_area("Questions (one per line)")
-        include_media = st.checkbox("Include Media")
-        format_type = st.selectbox(
-            "Format Type", ["research_notes", "summary", "detailed_analysis"]
+
+def display_pdf(pdf_file):
+    base64_pdf = base64.b64encode(pdf_file.read()).decode("utf-8")
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
+    st.markdown(pdf_display, unsafe_allow_html=True)
+
+
+def generate_report_interface():
+    st.title("Report Generation")
+
+    # Main interface
+    if 'selected_document' in st.session_state and st.session_state.selected_document:
+        doc = st.session_state.selected_document
+        st.subheader(f"Viewing: {doc['title']}")
+
+        # Get OpenAI model choices
+        openai_models_choice = st.selectbox(
+            "Choose an OpenAI model", ["gpt-4o", "gpt-4o-mini", "gpt-3.5"]
         )
-        submit_button = st.form_submit_button(label="Generate Report")
 
-    # Function to call the FastAPI endpoint
-    def generate_report(article_id, questions, include_media, format_type):
-        url = f"http://localhost:8000/qa/{article_id}/generate-report"
-        payload = {
-            "questions": [q.strip() for q in questions.split("\n") if q.strip()],
-            "include_media": include_media,
-            "format_type": format_type,
-        }
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {settings.JWT_SECRET_KEY}",  # Add JWT token for authentication
-        }
-        response = requests.post(url, json=payload, headers=headers)
-        return response.json()
+        # Display PDF content preview
+        st.subheader("PDF Content Preview")
 
-    # Handle form submission
-    if submit_button:
-        if article_id and questions and format_type:
-            with st.spinner("Generating report..."):
-                try:
-                    report = generate_report(
-                        article_id, questions, include_media, format_type
-                    )
-                    st.success("Report generated successfully!")
+        st.divider()
 
-                    # Display report details
-                    st.subheader("Report Details")
-                    st.write(f"Report ID: {report['report_id']}")
-                    st.write(f"Created At: {report['created_at']}")
-                    st.write(f"Validated: {report['validated']}")
-                    st.write(f"Indexed: {report['indexed']}")
+        # Display chat messages with feedback buttons
+        for idx, message in enumerate(st.session_state.reports):
+            with st.chat_message(message["role"]):
+                st.markdown(message["content"])
 
-                    # Display report content
-                    st.subheader("Report Content")
-                    st.text_area("Content", report["content"], height=300)
+                # Only show feedback buttons for assistant messages
+                if message["role"] == "assistant":
+                    col1, col2, col3 = st.columns([1, 1, 4])
 
-                    # Display media references if any
-                    if report["media_references"]:
-                        st.subheader("Media References")
-                        for media in report["media_references"]:
-                            st.write(media)
+                    # Check if this response already has feedback
+                    current_feedback = st.session_state.responses_feedback.get(idx)
 
-                    # Option to index the report
-                    if st.button("Index Report"):
-                        index_url = f"http://localhost:8000/chat/{article_id}/{report['report_id']}/index"
-                        headers = {"Authorization": f"Bearer {settings.JWT_SECRET_KEY}"}
-                        index_response = requests.post(index_url, headers=headers)
-                        if index_response.status_code == 200:
-                            st.success("Report indexed successfully!")
-                        else:
-                            st.error(f"Failed to index report: {index_response.text}")
+                    with col1:
+                        accept_button = st.button("✓ Accept",
+                                                  key=f"accept_{idx}",
+                                                  type="primary" if current_feedback == "accepted" else "secondary",
+                                                  disabled=current_feedback is not None)
+                        if accept_button:
+                            handle_feedback(idx, "accepted")
 
-                except requests.RequestException as e:
-                    st.error(f"Error generating report: {str(e)}")
-        else:
-            st.error("Please fill in all the required fields.")
+                    with col2:
+                        deny_button = st.button("✗ Deny",
+                                                key=f"deny_{idx}",
+                                                type="primary" if current_feedback == "denied" else "secondary",
+                                                disabled=current_feedback is not None)
+                        if deny_button:
+                            handle_feedback(idx, "denied")
+
+        # Chat input
+        if prompt := st.chat_input("Ask an analytical question to generate reports:"):
+            st.session_state.reports.append({"role": "user", "content": prompt})
+            with st.chat_message("user"):
+                st.markdown(prompt)
+
+            # Process the query
+            with st.spinner("Thinking..."):
+                article_id = doc['a_id']
+                data = {
+                    "model": openai_models_choice,
+                    "question": prompt,
+                }
+                response = make_authenticated_request(f"/chat/{article_id}/qa", "POST", data)
+
+            # Display the response
+            with st.chat_message("assistant"):
+                st.markdown(response["response"])
+
+            st.session_state.reports.append(
+                {"role": "assistant", "content": response["response"]}
+            )
+
+    else:
+        st.warning(
+            "No article selected. Please upload a PDF file before asking questions."
+        )

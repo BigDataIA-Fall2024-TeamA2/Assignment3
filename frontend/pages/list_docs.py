@@ -6,6 +6,9 @@ import base64
 from dotenv import load_dotenv
 import os
 
+from dags.data_ingestion.utils import fetch_file_from_s3
+from frontend.utils.auth import make_unauthenticated_request, make_authenticated_request
+
 # Load environment variables from .env file if present
 load_dotenv()
 
@@ -50,9 +53,9 @@ def _get_image_base64(image_url):
 def fetch_documents():
     """Fetch all documents from the backend API."""
     try:
-        response = requests.get(f"{"http://localhost:8000"}/articles")
-        response.raise_for_status()
-        return response.json()  # Should return a list of articles
+        response = make_authenticated_request("/articles/", "GET")
+
+        return response
     except requests.exceptions.RequestException as e:
         st.error("Failed to load documents from the server.")
         return []
@@ -96,8 +99,10 @@ def list_docs_page():
                 # Get the image URL from the document
                 image_key = doc.get("image_url")  # Corrected from image_uri to image_url
                 if image_key:  # Check if image_key exists
-                    image_url = get_s3_image_url(image_key)
-                    img_base64 = _get_image_base64(image_url)
+                    image_file = fetch_file_from_s3(image_key, None)
+                    with open(image_file, "rb") as fp:
+                        img_base64 = base64.b64encode(fp.read()).decode("utf-8")
+
                     st.image(f"data:image/png;base64,{img_base64}", use_column_width=True)
                 else:
                     st.write("Image URL not available.")  # Notify if there's no URL

@@ -8,19 +8,11 @@ import PyPDF2
 import io
 import base64
 
-# Load environment variables from .env file
+from dags.data_ingestion.utils import fetch_file_from_s3
+from frontend.utils.auth import make_authenticated_request
+
 load_dotenv()
-
-# API base URL
-API_BASE_URL = "http://localhost:8000/qa/{article_id}/qa"  # Adjust this to your FastAPI server address
-
-
-def extract_text_from_pdf(pdf_file):
-    pdf_reader = PyPDF2.PdfReader(pdf_file)
-    text = ""
-    for page in pdf_reader.pages:
-        text += page.extract_text() + "\n"
-    return text
+st.session_state.messages = []
 
 
 def display_pdf(pdf_file):
@@ -32,36 +24,24 @@ def display_pdf(pdf_file):
 def qa_interface():
     st.title("Question Answering Interface")
 
-    # Initialize session state variables
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-    if "current_article_id" not in st.session_state:
-        st.session_state.current_article_id = None
-    if "user_id" not in st.session_state:
-        st.session_state.user_id = 1  # Replace with actual user authentication
-    if "pdf_content" not in st.session_state:
-        st.session_state.pdf_content = None
-
-    # File uploader for PDF
-    uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
-    if uploaded_file is not None:
-        st.session_state.current_article_id = uploaded_file.name
-        st.session_state.pdf_content = uploaded_file.read()
-        st.session_state.messages = []  # Clear previous messages
-
     # Main interface
-    if st.session_state.current_article_id:
-        st.subheader(f"Article: {st.session_state.current_article_id}")
+    if 'selected_document' in st.session_state and st.session_state.selected_document:
+        doc = st.session_state.selected_document
+        st.subheader(f"Viewing: {doc['title']}")
+
 
         # Get OpenAI model choices
         openai_models_choice = st.selectbox(
-            "Choose an OpenAI model", ["gpt-3.5-turbo", "gpt-4"]
+            "Choose an OpenAI model", ["gpt-4o", "gpt-4o-mini", "gpt-3.5"]
         )
 
         # Display PDF content preview
         st.subheader("PDF Content Preview")
-        if st.session_state.pdf_content:
-            display_pdf(io.BytesIO(st.session_state.pdf_content))
+        with st.spinner("Loading PDF"):
+            pdf_path = fetch_file_from_s3(doc["pdf_url"], None)
+            with open(pdf_path, "rb") as f:
+                content = f.read()
+            display_pdf(io.BytesIO(content))
 
         st.divider()
 
@@ -78,32 +58,19 @@ def qa_interface():
 
             # Process the query (for testing, we'll use a simple response)
             with st.spinner("Thinking..."):
-                # In a real scenario, you would send this to your API
-                # For now, we'll just return a simple response
-                pdf_text = extract_text_from_pdf(
-                    io.BytesIO(st.session_state.pdf_content)
-                )
-                qa_response = {
-                    "answer": f"This is a test response for the question: {prompt}\n\nThe PDF content is: {pdf_text[:500]}...",
-                    "confidence_score": 0.95,
-                    "referenced_pages": [1, 2, 3],
-                    "media_references": [],
+                article_id = doc['a_id']
+                data = {
+                    "model": openai_models_choice,
+                    "question": prompt,
                 }
+                response = make_authenticated_request(f"/chat/{article_id}/qa", "POST", data)
 
             # Display the response
             with st.chat_message("assistant"):
-                st.markdown(qa_response["answer"])
-                st.markdown(f"**Confidence:** {qa_response['confidence_score']}")
-                st.markdown(
-                    f"**Referenced Pages:** {', '.join(map(str, qa_response['referenced_pages']))}"
-                )
-                if qa_response["media_references"]:
-                    st.markdown(
-                        f"**Media References:** {', '.join(qa_response['media_references'])}"
-                    )
+                st.markdown(response["response"])
 
             st.session_state.messages.append(
-                {"role": "assistant", "content": qa_response["answer"]}
+                {"role": "assistant", "content": response["response"]}
             )
 
     else:
