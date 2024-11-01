@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, DateTime, Computed, Sequence
 from backend.database import Base
 
 class ArticleModel(Base):
-    __tablename__ = "articles"
+    __tablename__ = "summary"
 
 
     a_id = Column(
