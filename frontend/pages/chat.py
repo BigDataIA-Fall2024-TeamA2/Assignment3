@@ -42,7 +42,8 @@ def qa_interface():
         with st.spinner("Loading PDF content..."):
             pdf_content = get_pdf_documents(st.session_state.current_article_id)
         st.subheader("PDF Content Preview")
-        st.text_area("PDF Content", pdf_content[:500] + "...", height=150, disabled=True)
+        # Convert the list to a string before concatenating
+        st.text_area("PDF Content", "".join(pdf_content)[:500] + "...", height=150, disabled=True)
 
     st.divider()
 
