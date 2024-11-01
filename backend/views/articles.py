@@ -28,9 +28,9 @@ async def get_all_articles(
     response_model=ArticleResponse,
     responses={status.HTTP_404_NOT_FOUND: {"model": None}},
 )
-async def get_article(
-    article_id: str, token: str = Depends(security_scheme)
-) -> ArticleResponse:
+async def get_article( article_id: str,
+                      token: str = Depends(security_scheme)
+                      ) -> ArticleResponse:
     if article := await _get_article(article_id=article_id):
         return article
     raise HTTPException(
@@ -53,6 +53,7 @@ async def generate_summary(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Article with id {article_id} not found",
         )
+    print(article)
 
     summary = await _generate_summary(article_id)
     if not summary:

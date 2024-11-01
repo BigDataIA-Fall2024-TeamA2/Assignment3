@@ -68,6 +68,7 @@ async def _generate_summary(article_id: str) -> Optional[str]:
         with db_session() as session:
             article = await _get_article(article_id)
             if not article:
+
                 return None
 
             # Here you would call the NVIDIA service
@@ -92,9 +93,9 @@ async def _generate_summary(article_id: str) -> Optional[str]:
                     print(f"Error processing directory {directory}: {str(e)}")
 
             # Update the article with the new summary
-            article.summary = summary
-            session.commit()
-            session.refresh(article)
+            # article.summary = summary
+            # session.commit()
+            # session.refresh(article)
             return summary
     except Exception as e:
         logger.error(
