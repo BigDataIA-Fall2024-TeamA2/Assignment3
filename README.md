@@ -46,29 +46,6 @@ The backend handles core functionalities:
 - Containerized using Docker for easy deployment and scalability.
 - Publicly accessible API and Streamlit application.
 
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/[YourRepositoryName] && cd [YourRepositoryName]
-   ```
-
-2. Set up the environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   pip install poetry
-   poetry install
-   cp .env.template .env
-   ```
-
-3. Configure the `.env` file with necessary credentials.
-
-4. Start the application:
-   ```bash
-   docker-compose up -d
-   ```
-
 ## Usage Instructions
 
 1. Access the Streamlit frontend via the provided URL.
@@ -76,22 +53,6 @@ The backend handles core functionalities:
 3. Explore documents using the grid view or dropdown list.
 4. Generate summaries, ask questions, and create research notes for selected documents.
 5. Use the search functionality to find specific information across documents and notes.
-
-## Resources
-
-- LLAMA Multimodal Report Generation Example
-- Multimodal RAG Slide Deck Example
-- NVIDIA Multimodal RAG Example
-
-## Attestation
-
-WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK
-
-Contribution:
-
-    a. Gopi Krishna Gorle: 33%
-    b. Pranali Chipkar: 33%
-    c. Mubin Modi: 33%
 
 ## Installation
 1. Clone the repository
@@ -109,14 +70,31 @@ python3 -m venv venv
 5. The application is dockerized and doesn't depend on external dependencies. Using the following command the frontend, backend applications can be started:
 ```bash
 docker compose up -d
-```
 
-## Usage Instructions
-1. The streamlit frontend, allows the unauthenticated users to either create a new account or login to existing accounts
-2. Once logged in (after creating an account), the user has the two options. Either to use the question answering interface or logout from his existing account.
+
+
+## Resources
+
+- LLAMA Multimodal Report Generation Example
+- Multimodal RAG Slide Deck Example
+- NVIDIA Multimodal RAG Example
+
+## Attestation
+
+WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK
+
+Contribution:
+
+    a. Gopi Krishna Gorle: 33%
+    b. Pranali Chipkar: 33%
+    c. Mubin Modi: 33%
+
+
+```
 
 
 ## Repository Overview
+```bash
 .
 ├── README.md
 ├── airflow.Dockerfile
