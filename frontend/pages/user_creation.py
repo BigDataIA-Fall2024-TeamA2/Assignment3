@@ -11,11 +11,16 @@ def create_user():
     email = st.text_input("Enter Email")
     full_name = st.text_input("Full Name")
 
-
     if st.button("Create User"):
-        response = requests.post(f"{settings.BACKEND_URI}/users/", json={
-            "username": username, "password": password, "email": email, "full_name": full_name
-        })
+        response = requests.post(
+            f"{settings.BACKEND_URI}/users/",
+            json={
+                "username": username,
+                "password": password,
+                "email": email,
+                "full_name": full_name,
+            },
+        )
         if response.status_code == 201:
             st.success("User created successfully")
         else:

@@ -9,9 +9,14 @@ from llama_index.vector_stores.milvus import MilvusVectorStore
 
 from dags.articles import get_all_articles
 from dags.data_indexer.document_processors import load_data_from_directory
-from dags.data_ingestion.utils import fetch_file_from_s3, ensure_resource_dir_exists, CACHED_RESOURCES_PATH
+from dags.data_ingestion.utils import (
+    fetch_file_from_s3,
+    ensure_resource_dir_exists,
+    CACHED_RESOURCES_PATH,
+)
 
 load_dotenv()
+
 
 def _fetch_files_from_s3(article_id: str, pdf_s3_key: str, image_s3_key: str):
     fetch_file_from_s3(pdf_s3_key, os.path.join("pdfs", str(article_id)))
@@ -31,7 +36,9 @@ def create_index(documents):
 
 
 def index_document():
-    Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-small", embed_batch_size=100)
+    Settings.embed_model = OpenAIEmbedding(
+        model="text-embedding-3-small", embed_batch_size=100
+    )
     Settings.llm = OpenAI(model="gpt-4o-mini", temperature=0.1)
     Settings.text_splitter = SentenceSplitter(chunk_size=600)
 
@@ -46,5 +53,5 @@ def index_document():
     index = create_index(documents)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     index_document()

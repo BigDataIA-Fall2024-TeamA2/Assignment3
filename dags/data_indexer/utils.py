@@ -11,11 +11,12 @@ def set_environment_variables():
     """Set necessary environment variables."""
     os.environ["NVIDIA_API_KEY"] = ""  # set API key
 
+
 def get_b64_image_from_content(image_content):
     """Convert image content to base64 encoded string."""
     img = Image.open(BytesIO(image_content))
-    if img.mode != 'RGB':
-        img = img.convert('RGB')
+    if img.mode != "RGB":
+        img = img.convert("RGB")
     buffered = BytesIO()
     img.save(buffered, format="JPEG")
     return base64.b64encode(buffered.getvalue()).decode("utf-8")
@@ -24,7 +25,9 @@ def get_b64_image_from_content(image_content):
 def is_graph(image_content):
     """Determine if an image is a graph, plot, chart, or table."""
     res = describe_image(image_content)
-    return any(keyword in res.lower() for keyword in ["graph", "plot", "chart", "table"])
+    return any(
+        keyword in res.lower() for keyword in ["graph", "plot", "chart", "table"]
+    )
 
 
 def process_graph(image_content):
@@ -32,7 +35,9 @@ def process_graph(image_content):
     deplot_description = process_graph_deplot(image_content)
     mixtral = NVIDIA(model_name="meta/llama-3.1-70b-instruct")
     response = mixtral.complete(
-        "Your responsibility is to explain charts. You are an expert in describing the responses of linearized tables into plain English text for LLMs to use. Explain the following linearized table. " + deplot_description)
+        "Your responsibility is to explain charts. You are an expert in describing the responses of linearized tables into plain English text for LLMs to use. Explain the following linearized table. "
+        + deplot_description
+    )
     return response.text
 
 
@@ -43,29 +48,28 @@ def describe_image(image_content):
     api_key = os.getenv("NVIDIA_API_KEY")
 
     if not api_key:
-        raise ValueError("NVIDIA API Key is not set. Please set the NVIDIA_API_KEY environment variable.")
+        raise ValueError(
+            "NVIDIA API Key is not set. Please set the NVIDIA_API_KEY environment variable."
+        )
 
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Accept": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {api_key}", "Accept": "application/json"}
 
     payload = {
         "messages": [
             {
                 "role": "user",
-                "content": f'Describe what you see in this image. <img src="data:image/png;base64,{image_b64}" />'
+                "content": f'Describe what you see in this image. <img src="data:image/png;base64,{image_b64}" />',
             }
         ],
         "max_tokens": 1024,
         "temperature": 0.20,
         "top_p": 0.70,
         "seed": 0,
-        "stream": False
+        "stream": False,
     }
 
     response = requests.post(invoke_url, headers=headers, json=payload)
-    return response.json()["choices"][0]['message']['content']
+    return response.json()["choices"][0]["message"]["content"]
 
 
 def process_graph_deplot(image_content):
@@ -75,28 +79,27 @@ def process_graph_deplot(image_content):
     api_key = os.getenv("NVIDIA_API_KEY")
 
     if not api_key:
-        raise ValueError("NVIDIA API Key is not set. Please set the NVIDIA_API_KEY environment variable.")
+        raise ValueError(
+            "NVIDIA API Key is not set. Please set the NVIDIA_API_KEY environment variable."
+        )
 
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Accept": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {api_key}", "Accept": "application/json"}
 
     payload = {
         "messages": [
             {
                 "role": "user",
-                "content": f'Generate underlying data table of the figure below: <img src="data:image/png;base64,{image_b64}" />'
+                "content": f'Generate underlying data table of the figure below: <img src="data:image/png;base64,{image_b64}" />',
             }
         ],
         "max_tokens": 1024,
         "temperature": 0.20,
         "top_p": 0.20,
-        "stream": False
+        "stream": False,
     }
 
     response = requests.post(invoke_url, headers=headers, json=payload)
-    return response.json()["choices"][0]['message']['content']
+    return response.json()["choices"][0]["message"]["content"]
 
 
 def extract_text_around_item(text_blocks, bbox, page_height, threshold_percentage=0.1):
@@ -107,10 +110,17 @@ def extract_text_around_item(text_blocks, bbox, page_height, threshold_percentag
 
     for block in text_blocks:
         block_bbox = fitz.Rect(block[:4])
-        vertical_distance = min(abs(block_bbox.y1 - bbox.y0), abs(block_bbox.y0 - bbox.y1))
-        horizontal_overlap = max(0, min(block_bbox.x1, bbox.x1) - max(block_bbox.x0, bbox.x0))
+        vertical_distance = min(
+            abs(block_bbox.y1 - bbox.y0), abs(block_bbox.y0 - bbox.y1)
+        )
+        horizontal_overlap = max(
+            0, min(block_bbox.x1, bbox.x1) - max(block_bbox.x0, bbox.x0)
+        )
 
-        if vertical_distance <= vertical_threshold_distance and horizontal_overlap >= -horizontal_threshold_distance:
+        if (
+            vertical_distance <= vertical_threshold_distance
+            and horizontal_overlap >= -horizontal_threshold_distance
+        ):
             if block_bbox.y1 < bbox.y0 and not before_text:
                 before_text = block[4]
             elif block_bbox.y0 > bbox.y1 and not after_text:

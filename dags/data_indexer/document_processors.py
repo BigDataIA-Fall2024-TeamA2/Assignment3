@@ -3,13 +3,8 @@ import fitz
 from pptx import Presentation
 import subprocess
 from llama_index.core import Document
-<<<<<<<< HEAD:dags/data_indexer/document_processors.py
 from dags.data_indexer.utils import (
     describe_image, is_graph, process_graph, extract_text_around_item,
-========
-from backend.utilities.nvidia_utils import (
-    describe_image, is_graph, process_graph, extract_text_around_item, 
->>>>>>>> 987a0b791cd90fd06f2a693ef4670a21678192fd:backend/utilities/document_processors.py
     process_text_blocks, save_uploaded_file
 )
 

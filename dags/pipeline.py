@@ -11,8 +11,8 @@ from data_ingestion.scraper import scrape_data
 load_dotenv()
 
 # Snowflake connection parameters
-SNOWFLAKE_CONN_ID = 'snowflake_default'
-WAREHOUSE = os.getenv('SNOWFLAKE_WAREHOUSE')
+SNOWFLAKE_CONN_ID = "snowflake_default"
+WAREHOUSE = os.getenv("SNOWFLAKE_WAREHOUSE")
 DATABASE = "DAMG_7245_A3"
 SCHEMA = "PUBLIC"
 
@@ -107,21 +107,13 @@ with DAG(
     start_date=datetime.now(),
     max_active_runs=1,
     schedule_interval=None,
-    default_args={
-        "retries": 1,
-        "retry_delay": timedelta(minutes=5),
-        "owner": "me"
-    },
+    default_args={"retries": 1, "retry_delay": timedelta(minutes=5), "owner": "me"},
     catchup=False,
 ) as dag:
     scraper_task = PythonOperator(
-        task_id="scraper",
-        python_callable=scrape_data,
-        params={"seed_url": SEED_URL}
+        task_id="scraper", python_callable=scrape_data, params={"seed_url": SEED_URL}
     )
 
 
-with DAG(
-
-):
+with DAG():
     ...

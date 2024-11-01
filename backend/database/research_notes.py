@@ -1,14 +1,21 @@
-from sqlalchemy import Column, String, Integer, Boolean, DateTime, ForeignKey
 from datetime import datetime
+
+from sqlalchemy import Column, String, Boolean, DateTime
+
 from backend.database import Base
 
-class ResearchNoteModel(Base):
+
+class ResearchNotes(Base):
     __tablename__ = "research_notes"
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    document_id = Column(Integer, ForeignKey("documents.id"))
-    question = Column(String, nullable=False)
-    answer = Column(String, nullable=False)
+    id = Column(String, primary_key=True)
+    a_id = Column(String)
+    question = Column(String)
+    answer = Column(String)
+    referenced_pages = Column(String)
+    model = Column(String)
     validated = Column(Boolean, default=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    modified_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    created_at = Column(DateTime, default=datetime.now)
+    modified_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+
+    __table_args__ = {"schema": "public"}

@@ -4,16 +4,13 @@
 from llama_index.core import Settings
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
+from llama_index.vector_stores.milvus import MilvusVectorStore
 
 # from backend.utils.document_processors import load_data_from_directory
 # from backend.utils.nvidia_utils import set_environment_variables
 from backend.config import settings
-
-from backend.utilities.nvidia_utils import (describe_image, is_graph, process_graph, extract_text_around_item,
-    process_text_blocks, save_uploaded_file )
 
 
 class DocumentSummarizer:
@@ -22,28 +19,33 @@ class DocumentSummarizer:
 
     def initialize_settings(self):
         """Initialize LlamaIndex settings with NVIDIA models"""
-        Settings.embed_model = NVIDIAEmbedding(model="nvidia/nv-embedqa-e5-v5", truncate="END")
-        Settings.llm = NVIDIA(model="mistralai/mistral-7b-instruct-v0.3", nvidia_api_key=settings.NVIDIA_API_KEY )
+        Settings.embed_model = NVIDIAEmbedding(
+            model="nvidia/nv-embedqa-e5-v5", truncate="END"
+        )
+        Settings.llm = NVIDIA(
+            model="mistralai/mistral-7b-instruct-v0.3",
+            nvidia_api_key=settings.NVIDIA_API_KEY,
+        )
         Settings.text_splitter = SentenceSplitter(chunk_size=900)
 
     def create_index(self, documents):
         vector_store = MilvusVectorStore(
-            uri=settings.MILVUS_CLOUD_URI,
-            token=settings.MILVUS_API_KEY,
-            dim=1024
+            uri=settings.MILVUS_CLOUD_URI, token=settings.MILVUS_API_KEY, dim=1024
         )
         # vector_store = MilvusVectorStore(uri="./milvus_demo.db", dim=1024, overwrite=True) #For CPU only vector store
         storage_context = StorageContext.from_defaults(vector_store=vector_store)
-        return VectorStoreIndex.from_documents(documents, storage_context=storage_context)
+        return VectorStoreIndex.from_documents(
+            documents, storage_context=storage_context
+        )
 
     def generate_summary(self, index, doc_length="medium"):
         """Generate a summary of the documents"""
         length_prompts = {
             "short": "Provide a brief 2-3 sentence summary of the main points in the document.",
             "medium": "Provide a comprehensive paragraph summarizing the key points and main ideas in the document.",
-            "long": "Provide a detailed summary of the document, including main points, key details, and important conclusions."
+            "long": "Provide a detailed summary of the document, including main points, key details, and important conclusions.",
         }
-        
+
         prompt = length_prompts.get(doc_length, length_prompts["short"])
         query_engine = index.as_query_engine(similarity_top_k=1)
         print(query_engine)
@@ -72,19 +74,19 @@ class DocumentSummarizer:
 def main():
     # Initialize the summarizer
     summarizer = DocumentSummarizer()
-    
+
     # List of directories to process
     document_directories = [
         "/Users/pranalichipkar/Documents/Pranali/BigData-Assignments/Assignment3/backend/data/"
     ]
-    
+
     # Process each directory
     for directory in document_directories:
         print(f"\nProcessing directory: {directory}")
         try:
             summary = summarizer.summarize_directory(
                 directory_path=directory,
-                summary_length="medium"  # Options: "short", "medium", "long"
+                summary_length="medium",  # Options: "short", "medium", "long"
             )
             print("\nSummary:")
             print("=" * 80)
@@ -92,6 +94,7 @@ def main():
             print("=" * 80)
         except Exception as e:
             print(f"Error processing directory {directory}: {str(e)}")
+
 
 if __name__ == "__main__":
     main()

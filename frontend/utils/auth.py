@@ -5,8 +5,8 @@ from frontend.config import settings
 
 
 def set_tokens(tokens: dict[str, str]):
-    st.session_state['access_token'] = tokens.get("access_token")
-    st.session_state['refresh_token'] = tokens.get("refresh_token")
+    st.session_state["access_token"] = tokens.get("access_token")
+    st.session_state["refresh_token"] = tokens.get("refresh_token")
 
 
 def get_access_token():
@@ -23,9 +23,7 @@ def get_refresh_token():
 
 def make_authenticated_request(endpoint, method="GET", data=None, params=None):
     token = get_access_token()
-    headers = {
-        "Authorization": f"Bearer {token}"
-    }
+    headers = {"Authorization": f"Bearer {token}"}
     url = f"{settings.BACKEND_URI}/{endpoint}"
 
     if method == "POST":

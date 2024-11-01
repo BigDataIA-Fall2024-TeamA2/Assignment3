@@ -25,7 +25,6 @@ def ensure_resource_dir_exists():
     _ensure_directory_exists(os.path.join(CACHED_RESOURCES_PATH, "images"))
 
 
-
 def load_aws_tokens():
     required_keys = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_REGION"]
     if all(key in os.environ for key in required_keys):
@@ -52,7 +51,11 @@ def get_s3_client():
 def fetch_file_from_s3(key: str, dest_filename: str | None):
     s3_client = get_s3_client()
 
-    filename = os.path.basename(key) if not dest_filename else f"{dest_filename}{os.path.splitext(key)[1]}"
+    filename = (
+        os.path.basename(key)
+        if not dest_filename
+        else f"{dest_filename}{os.path.splitext(key)[1]}"
+    )
     local_filepath = os.path.join(CACHED_RESOURCES_PATH, filename)
     # Check locally before downloading
     if os.path.exists(local_filepath):

@@ -1,27 +1,24 @@
-# views/qa.py
-from fastapi import APIRouter, status, HTTPException, Depends
-from openai import OpenAI
 from typing import List
+
+from fastapi import APIRouter, status, HTTPException, Depends
 
 from backend.schemas.qa import (
     QARequest,
-    QAResponse,
     ChatHistoryResponse,
     ReportGenerationRequest,
     ReportResponse,
-    IndexReportResponse
-)
-from backend.services.qa import (
-    process_qa_query,
-    get_qa_history,
-    generate_research_report,
-    index_report
+    IndexReportResponse,
 )
 from backend.services.auth_bearer import get_current_user_id
+from backend.services.chat import (
+    process_qa_query,
+    get_qa_history, generate_research_report,
+)
 
-qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
+chat_router = APIRouter(prefix="/chat", tags=["qa-interface"])
 
-@qa_router.post(
+
+@chat_router.post(
     "/{article_id}/qa",
     # response_model=QAResponse,
     # responses={
@@ -30,28 +27,24 @@ qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
     # }
 )
 async def question_answer(
-    article_id: str,
-    request: QARequest,
-    user_id: int = Depends(get_current_user_id)
+    article_id: str, request: QARequest, user_id: int = Depends(get_current_user_id)
 ):
     """
     Process a Q/A query for a specific article using multi-modal RAG
     """
     return {
         "response": await process_qa_query(
-        article_id,
-        request.question,
-        request.model,
-        user_id
-    )}
+            article_id, request.question, request.model, user_id
+        )
+    }
 
-@qa_router.get(
+
+@chat_router.get(
     "/{article_id}/history",
     # response_model=List[ChatHistoryResponse]
 )
 async def get_history(
-    article_id: int,
-    user_id: int = Depends(get_current_user_id)
+    article_id: int, user_id: int = Depends(get_current_user_id)
 ) -> List[ChatHistoryResponse]:
     """
     Retrieve Q/A history for a specific article
@@ -61,11 +54,11 @@ async def get_history(
         return [ChatHistoryResponse(**h) for h in history]
     except Exception as e:
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)
         )
 
-@qa_router.post(
+
+@chat_router.post(
     "/{article_id}/generate-report",
     # response_model=ReportResponse,
     # responses={
@@ -74,28 +67,23 @@ async def get_history(
     # }
 )
 async def create_report(
-    article_id: int,
+    article_id: str,
     request: ReportGenerationRequest,
-    user_id: int = Depends(get_current_user_id)
-) -> ReportResponse:
+    user_id: int = Depends(get_current_user_id),
+):
     """
     Generate a comprehensive research report for an article
     """
-    try:
-        return await generate_research_report(
-            article_id,
-            request.questions,
-            request.include_media,
-            request.format_type,
-            user_id
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
-        )
+    return {
+        "response": await generate_research_report(
+        article_id,
+        request.question,
+        request.model,
+        user_id,
+    )}
 
-@qa_router.post(
+
+@chat_router.post(
     "/{article_id}/{report_id}/index",
     # response_model=IndexReportResponse,
     # responses={
@@ -104,9 +92,7 @@ async def create_report(
     # }
 )
 async def validate_and_index_report(
-    article_id: int,
-    report_id: int,
-    user_id: int = Depends(get_current_user_id)
+    article_id: int, report_id: int, user_id: int = Depends(get_current_user_id)
 ) -> IndexReportResponse:
     """
     Validate and index a generated report
@@ -116,6 +102,5 @@ async def validate_and_index_report(
         return IndexReportResponse(status=_status, message=message)
     except Exception as e:
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)
         )

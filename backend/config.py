@@ -1,4 +1,5 @@
 from functools import lru_cache
+
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -10,8 +11,8 @@ class Settings(BaseSettings, extra="ignore"):
     SNOWFLAKE_DB_ACCOUNT: str
     SNOWFLAKE_DB_ROLE: str
     SNOWFLAKE_DB_WAREHOUSE: str = "COMPUTE_WH"  # Default warehouse, change if needed
-    SNOWFLAKE_DB_DATABASE: str = "MY_DATABASE"   # Default database, change if needed
-    SNOWFLAKE_DB_SCHEMA: str = "PUBLIC"          # Default schema, change if needed
+    SNOWFLAKE_DB_DATABASE: str = "MY_DATABASE"  # Default database, change if needed
+    SNOWFLAKE_DB_SCHEMA: str = "PUBLIC"  # Default schema, change if needed
     SNOWFLAKE_CONN_STRING: str | None = None
 
     # Milvus Cloud (for vector store)
@@ -47,7 +48,7 @@ class Settings(BaseSettings, extra="ignore"):
     # Nvidia API KEY
     NVIDIA_API_KEY: str
 
-    # #Open 
+    # #Open
     # OPENAI_API_KEY: str
 
     model_config = SettingsConfigDict(env_file=".env")

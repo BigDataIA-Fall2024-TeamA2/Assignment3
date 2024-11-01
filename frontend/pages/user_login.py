@@ -11,7 +11,10 @@ def login():
     password = st.text_input("Enter Password", type="password")
 
     if st.button("Login"):
-        response = requests.post(f"{settings.BACKEND_URI}/auth/token", json={"username": username, "password": password})
+        response = requests.post(
+            f"{settings.BACKEND_URI}/auth/token",
+            json={"username": username, "password": password},
+        )
         if response.status_code == 200:
             tokens = response.json()
             set_tokens(tokens)

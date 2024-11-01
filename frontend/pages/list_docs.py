@@ -3,6 +3,7 @@ from PIL import Image
 import io
 import base64
 
+
 def _get_image_base64(image_path):
     """Convert image to base64 string"""
     with Image.open(image_path) as img:
@@ -10,9 +11,10 @@ def _get_image_base64(image_path):
         img.save(buffer, format="PNG")
         return base64.b64encode(buffer.getvalue()).decode()
 
+
 def list_docs_page():
     st.title("Document List")
-    
+
     test_docs = [
         {
             "name": "Sample_Document1.pdf",
@@ -31,13 +33,21 @@ def list_docs_page():
         },
     ]
 
-    view_option = st.radio("Select Document Exploration Mode", ("Dropdown View", "Grid View"), horizontal=True)
+    view_option = st.radio(
+        "Select Document Exploration Mode",
+        ("Dropdown View", "Grid View"),
+        horizontal=True,
+    )
 
     if view_option == "Dropdown View":
-        selected_doc_name = st.selectbox("Choose a document", [doc["name"] for doc in test_docs])
+        selected_doc_name = st.selectbox(
+            "Choose a document", [doc["name"] for doc in test_docs]
+        )
         if selected_doc_name:
             if st.button(f"View {selected_doc_name}"):
-                selected_doc = next((doc for doc in test_docs if doc["name"] == selected_doc_name), None)
+                selected_doc = next(
+                    (doc for doc in test_docs if doc["name"] == selected_doc_name), None
+                )
                 if selected_doc:
                     st.session_state.selected_document = selected_doc
                     st.session_state.current_view = "document_viewer"
