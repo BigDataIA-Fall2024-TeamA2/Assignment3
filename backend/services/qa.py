@@ -7,7 +7,7 @@ from openai import OpenAI
 from backend.database import db_session
 from backend.database.qa import ResearchReport, QAHistory
 from backend.schemas.qa import QAResponse, ReportResponse
-from backend.utils import load_file_contents
+from backend.utilities.document_processors import get_pdf_documents
 
 async def process_qa_query(
     article_id: int,
@@ -19,7 +19,7 @@ async def process_qa_query(
 ) -> QAResponse:
     """Process a Q/A query and store the result"""
     # Get document content
-    file_contents = await load_file_contents(article_id)
+    file_contents = await get_pdf_documents(article_id)
     
     # Prepare system prompt
     system_prompt = (
@@ -92,7 +92,7 @@ async def generate_research_report(
 ) -> ReportResponse:
     """Generate a research report from multiple questions"""
     # Get document content
-    file_contents = await load_file_contents(article_id)
+    file_contents = await get_pdf_documents(article_id)
     
     # Generate answers for all questions
     answers = []
