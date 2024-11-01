@@ -33,10 +33,10 @@ logger = logging.getLogger(__name__)
 #         session.rollback()
 #         return None
 
-async def _get_article(article_id: int) -> Optional[ArticleModel]:
+async def _get_article(article_id: str) -> Optional[ArticleModel]:
     try:
         with db_session() as session:
-            stmt = select(ArticleModel).where(ArticleModel.article_id == article_id)
+            stmt = select(ArticleModel).where(ArticleModel.a_id == article_id)
             result = session.execute(stmt)
             article = result.scalar_one_or_none()
             if article:
@@ -57,7 +57,7 @@ async def _get_all_articles() -> List[ArticleModel]:
         logger.error(f"Error fetching all articles: {str(e)}", exc_info=True)
         return []
 
-async def _generate_summary(article_id: int) -> Optional[str]:
+async def _generate_summary(article_id: str) -> Optional[str]:
     # This is a placeholder for the NVIDIA service integration
     # You would implement the actual NVIDIA service call here
     try:
