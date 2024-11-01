@@ -5,11 +5,11 @@
 This application is a sophisticated Retrieval-Augmented Generation (RAG) system that allows users to interact with and analyze PDF documents from the CFA Institute Research Foundation Publications. It features a multi-modal approach, combining text and image analysis for comprehensive document exploration.
 
 Links to Resources:
-1. [CodeLabs Link]([https://codelabs-preview.appspot.com/?file_id=1WFuc5ShwnSdNSBE-l3amYXxE4B6U5xpitCTYttudxMI#0](https://codelabs-preview.appspot.com/?file_id=17gEwdjYbRR4qBIRmAqFPeYRKOlSqthT9UAZr5AXWEJc#0))
-2. [Deployed Streamlit Frontend](http://98.81.209.60:8501/)
-3. [Deployed FastAPI Backend](http://98.81.209.60:8000/docs/)
+1. [CodeLabs Link](https://codelabs-preview.appspot.com/?file_id=17gEwdjYbRR4qBIRmAqFPeYRKOlSqthT9UAZr5AXWEJc#0)
+2. [Deployed Streamlit Frontend](http://44.212.13.198:8501/)
+3. [Deployed FastAPI Backend](http://44.212.13.198:8000/docs/)
 4. [Demo Video](video/video.mov)
-  
+
 
 ## Key Features
 
