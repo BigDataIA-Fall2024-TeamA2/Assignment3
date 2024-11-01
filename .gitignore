@@ -174,4 +174,5 @@ logs
 
 # airflow docker folders
 airflow/
+vectorstore/
 
