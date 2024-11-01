@@ -1,4 +1,3 @@
-import base64
 import logging
 import os
 from functools import lru_cache
@@ -6,15 +5,21 @@ from functools import lru_cache
 import boto3
 from botocore.exceptions import ClientError, NoCredentialsError
 
-BASE_RESOURCES_PATH = os.path.join("sources", "resources")
+BASE_RESOURCES_PATH = os.path.join("resources")
 SCRAPED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "scraped")
 CACHED_RESOURCES_PATH = os.path.join(BASE_RESOURCES_PATH, "cached")
 
 logger = logging.getLogger(__name__)
 
 
-def ensure_directory_exists(directory):
+def _ensure_directory_exists(directory):
     os.makedirs(directory, exist_ok=True)
+
+
+def ensure_resource_dir_exists():
+    _ensure_directory_exists(os.path.join(CACHED_RESOURCES_PATH, "pdfs"))
+    _ensure_directory_exists(os.path.join(CACHED_RESOURCES_PATH, "images"))
+
 
 
 def load_aws_tokens():
@@ -43,22 +48,27 @@ def get_s3_client():
     return boto3.client("s3", **load_aws_tokens())
 
 
-def fetch_file_from_s3(key: str):
+def fetch_file_from_s3(key: str, dest_filename: str | None):
     s3_client = get_s3_client()
-    filename = os.path.basename(key)
+
+    filename = os.path.basename(key) if not dest_filename else f"{dest_filename}{os.path.splitext(key)[1]}"
     local_filepath = os.path.join(CACHED_RESOURCES_PATH, filename)
-    try:
-        _ = s3_client.head_object(Bucket=load_s3_bucket(), Key=filename)
-        s3_client.download_file(load_s3_bucket(), filename)
-        logger.info(f"Downloaded file {key} from S3")
+    # Check locally before downloading
+    if os.path.exists(local_filepath):
         return local_filepath
-    except ClientError as e:
-        if e.response["Error"]["Code"] == "404":  # File not found
-            logger.error(f"File {key} not found on S3")
-            return False
-        else:
-            logger.error("")
-            return False
+    else:
+        try:
+            _ = s3_client.head_object(Bucket=load_s3_bucket(), Key=key)
+            s3_client.download_file(load_s3_bucket(), key, local_filepath)
+            logger.info(f"Downloaded file {key} from S3")
+            return local_filepath
+        except ClientError as e:
+            if e.response["Error"]["Code"] == "404":  # File not found
+                logger.error(f"File {key} not found on S3")
+                return False
+            else:
+                logger.error("")
+                return False
 
 
 def upload_file_to_s3(local_file_path: str, key: str):

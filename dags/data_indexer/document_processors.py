@@ -1,26 +1,10 @@
-
-# SPDX-FileCopyrightText: Copyright (c) 2023-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import os
 import fitz
 from pptx import Presentation
 import subprocess
 from llama_index.core import Document
-from backend.utils.nvidia_utils import (
-    describe_image, is_graph, process_graph, extract_text_around_item, 
+from dags.data_indexer.utils import (
+    describe_image, is_graph, process_graph, extract_text_around_item,
     process_text_blocks, save_uploaded_file
 )
 
@@ -37,10 +21,10 @@ def get_pdf_documents(pdf_file):
 
     for i in range(len(f)):
         page = f[i]
-        text_blocks = [block for block in page.get_text("blocks", sort=True) 
+        text_blocks = [block for block in page.get_text("blocks", sort=True)
                        if block[-1] == 0 and not (block[1] < page.rect.height * 0.1 or block[3] > page.rect.height * 0.9)]
         grouped_text_blocks = process_text_blocks(text_blocks)
-        
+
         table_docs, table_bboxes, ongoing_tables = parse_all_tables(pdf_file.name, page, i, text_blocks, ongoing_tables)
         all_pdf_documents.extend(table_docs)
 
@@ -160,14 +144,14 @@ def process_ppt_file(ppt_path):
     for (image_path, page_num), (slide_text, notes) in zip(images_data, slide_texts):
         if notes:
             notes = "\n\nThe speaker notes for this slide are: " + notes
-        
+
         with open(image_path, 'rb') as image_file:
             image_content = image_file.read()
-        
+
         image_description = " "
         if is_graph(image_content):
             image_description = process_graph(image_content)
-        
+
         image_metadata = {
             "source": f"{os.path.basename(ppt_path)}",
             "image": image_path,
@@ -282,5 +266,5 @@ def load_data_from_directory(directory):
                 text = text_file.read()
             doc = Document(text=text, metadata={"source": filename, "type": "text"})
             documents.append(doc)
-    print(documents)
-    return documents[:1]
+    # print(documents)
+    return documents

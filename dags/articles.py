@@ -102,9 +102,25 @@ def insert_articles_from_json(json_file_path):
 
 
 def get_all_articles():
-    get_query = """
-    SELECT ARTICLE_ID, 
-    """
+    # Establish connection to Snowflake
+    conn = snowflake.connector.connect(
+        account=account,
+        user=user,
+        password=password,
+        database=database,
+        warehouse=warehouse
+    )
+
+    cursor = conn.cursor()
+    # Explicitly set the warehouse and schema
+    cursor.execute(f"USE WAREHOUSE {warehouse}")
+    cursor.execute(f"USE SCHEMA {database}.PUBLIC")  # Assuming PUBLIC schema, adjust if different
+    get_query = "SELECT A_ID, PDF_URL, IMAGE_URL FROM ARTICLES"
+
+    result = cursor.execute(get_query)
+    return result.fetchall()
+
+
 
 if __name__ == "__main__":
     # Specify the path to your JSON file

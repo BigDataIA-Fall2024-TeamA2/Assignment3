@@ -8,8 +8,7 @@ from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
 
-from backend.utils.document_processors import load_data_from_directory
-from backend.utils.nvidia_utils import set_environment_variables
+# from backend.utils.document_processors import load_data_from_directory
 from backend.config import settings
 
 
@@ -51,16 +50,18 @@ class DocumentSummarizer:
     def summarize_directory(self, directory_path, summary_length="medium"):
         """Process a directory of documents and generate a summary"""
         print(f"Processing documents from directory: {directory_path}")
-        documents = load_data_from_directory(directory_path)
-        print(f"Found {len(documents)} documents")
+        # documents = load_data_from_directory(directory_path)
+        # print(f"Found {len(documents)} documents")
+        #
+        # print("Creating document index...")
+        # index = self.create_index(documents)
+        #
+        # print("Generating summary...")
+        # summary = self.generate_summary(index, summary_length)
         
-        print("Creating document index...")
-        index = self.create_index(documents)
-        
-        print("Generating summary...")
-        summary = self.generate_summary(index, summary_length)
-        
-        return summary
+        # return summary
+        return ""
+
 
 def main():
     # Initialize the summarizer

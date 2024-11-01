@@ -18,7 +18,6 @@ from backend.services.qa import (
     index_report
 )
 from backend.services.auth_bearer import get_current_user_id
-from backend.utils import get_openai_client
 
 qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
 
@@ -33,7 +32,6 @@ qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
 async def question_answer(
     article_id: int,
     request: QARequest,
-    openai_client: OpenAI = Depends(get_openai_client),
     user_id: int = Depends(get_current_user_id)
 ) -> QAResponse:
     """
@@ -45,7 +43,6 @@ async def question_answer(
             request.question,
             request.model,
             request.context_type,
-            openai_client,
             user_id
         )
     except Exception as e:
@@ -85,7 +82,6 @@ async def get_history(
 async def create_report(
     article_id: int,
     request: ReportGenerationRequest,
-    openai_client: OpenAI = Depends(get_openai_client),
     user_id: int = Depends(get_current_user_id)
 ) -> ReportResponse:
     """
@@ -97,7 +93,6 @@ async def create_report(
             request.questions,
             request.include_media,
             request.format_type,
-            openai_client,
             user_id
         )
     except Exception as e:

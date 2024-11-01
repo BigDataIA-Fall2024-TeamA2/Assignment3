@@ -8,8 +8,7 @@ from llama_index.vector_stores.milvus import MilvusVectorStore
 from llama_index.embeddings.nvidia import NVIDIAEmbedding
 from llama_index.llms.nvidia import NVIDIA
 
-from backend.utils.document_processors import load_data_from_directory
-from backend.utils.nvidia_utils import set_environment_variables
+from dags.data_indexer.document_processors import load_data_from_directory
 from backend.config import settings
 
 

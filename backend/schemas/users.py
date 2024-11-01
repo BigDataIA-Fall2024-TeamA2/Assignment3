@@ -3,7 +3,7 @@ from time import time
 
 from pydantic import BaseModel, EmailStr, Field, model_validator
 
-from backend.utils import get_password_hash
+from backend.utils.base_utils import get_password_hash
 
 
 class UserRequest(BaseModel):
