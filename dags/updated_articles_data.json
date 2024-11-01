@@ -1,0 +1,902 @@
+[
+    {
+        "id": "2147637d-a6a9-48ec-ae5e-265260e9f732",
+        "title": "Beyond Active and Passive Investing: The Customization of Finance",
+        "description": "Explore the future of active and passive investing with insights on hyper-managed portfolios, blending both strategies for customized financial solutions",
+        "date": "06 Aug 2024",
+        "authors": "Marc Reinganum, Kenneth Blay",
+        "pdf_url": "cfa-publications/pdfs/beyond-active-and-passive.pdf",
+        "image_url": "cfa-publications/images/cover-beyond-active-and-passive.jpg"
+    },
+    {
+        "id": "85089465-2836-45c4-8871-fff4cd31171e",
+        "title": "Investment Model Validation: A Guide for Practitioners",
+        "description": "Because proactive model validation is critical for investment processes, this monograph offers a detailed overview of tools to help practitioners.",
+        "date": "27 Jun 2024",
+        "authors": "Joseph Simonian",
+        "pdf_url": "cfa-publications/pdfs/investment-model-validation.pdf",
+        "image_url": "cfa-publications/images/cover-investment-model-validation.jpg"
+    },
+    {
+        "id": "8ab6e7cc-8647-484d-bff1-e92afe185cf2",
+        "title": "The Economics of Private Equity: A Critical Review",
+        "description": "This literature review synthesizes the academic literature on private equity, focusing on its performance, value creation, and key aspects for investors.",
+        "date": "14 May 2024",
+        "authors": "Alexander Ljungqvist",
+        "pdf_url": "cfa-publications/pdfs/economics-of-private-equity.pdf",
+        "image_url": "cfa-publications/images/cover-private-equity.jpg"
+    },
+    {
+        "id": "41b44791-71ae-4499-a865-09badf572e89",
+        "title": "Investment Horizon, Serial Correlation, and Better (Retirement) Portfolios",
+        "description": "Studying how serial dependence affects optimal portfolios, the authors find that optimal allocations vary materially across investment periods.",
+        "date": "24 Apr 2024",
+        "authors": "David Blanchett, CFA, Jeremy Stempien",
+        "pdf_url": "cfa-publications/pdfs/investment-horizon.pdf",
+        "image_url": "cfa-publications/images/cover-investment-horizon.jpg"
+    },
+    {
+        "id": "e9d55e6f-c12c-4e72-9089-816d15085a61",
+        "title": "Valuation Handbook — International Guide to Cost of Capital: 2023 Summary Edition",
+        "description": "This guide will help practitioners evaluate investments and capital projects globally by providing a good understanding of the cost of capital.",
+        "date": "29 Mar 2024",
+        "authors": "James Harrington, Carla Nunes, CFA, Anas Aboulamer",
+        "pdf_url": "cfa-publications/pdfs/2023-international-valuation-guide-to-cost-of-capital.pdf",
+        "image_url": "cfa-publications/images/Cover-from-2023-International-Guide-to-Cost-of-Capital_CFA-Kroll-Final.jpg"
+    },
+    {
+        "id": "e51511da-2b42-47b7-a867-004c5e5ff760",
+        "title": "An Introduction to Alternative Credit",
+        "description": "In this book practitioners introduce the key features of the alternative credit asset class.",
+        "date": "20 Mar 2024",
+        "authors": "Alfonso Ricciardelli, CFA - Editor, Philip Clements, CFA - Editor",
+        "pdf_url": "cfa-publications/pdfs/introduction-to-alt-credit.pdf",
+        "image_url": "cfa-publications/images/an-introduction-to-alt-credit_v2.jpg"
+    },
+    {
+        "id": "2b668aac-f31e-4869-935f-3331e939f4ab",
+        "title": "Lifetime Financial Advice: A Personalized Optimal Multilevel Approach",
+        "description": "A practical, integrated three-stage model that incorporates life-cycle finance is proposed for financial planning.",
+        "date": "15 Feb 2024",
+        "authors": "Thomas Idzorek, CFA, Paul Kaplan, CFA",
+        "pdf_url": "cfa-publications/pdfs/lifetime-financial-advice.pdf",
+        "image_url": "cfa-publications/images/Cover-from-Kaplan_RF.jpg"
+    },
+    {
+        "id": "3a50e6c8-d800-4b34-a7e2-0f98965dfad6",
+        "title": "Revisiting the Equity Risk Premium",
+        "description": "Held once a decade since 2001, the Equity Risk Premium Forum gathers leading investment minds to discuss new ERP research and key trends.",
+        "date": "06 Jun 2023",
+        "authors": "Laurence Siegel, Paul McCaffrey",
+        "pdf_url": "cfa-publications/pdfs/Revisiting-the-Equity-Risk-Premium.pdf",
+        "image_url": "cfa-publications/images/Cover-from-Revisiting-the-Equity-Risk-Premium_Online.jpg"
+    },
+    {
+        "id": "e4430d54-67ae-4b25-b4ee-5b30fdfb98bd",
+        "title": "Handbook of Artificial Intelligence and Big Data Applications in Investments",
+        "description": "Each chapter takes you on a well-guided tour of the development & application of specific AI & big data techniques & how they are being used by asset managers.",
+        "date": "27 Mar 2023",
+        "authors": "Larry Cao, CFA - Editor",
+        "pdf_url": "cfa-publications/pdfs/ai-and-big-data-in-investments.pdf",
+        "image_url": "cfa-publications/images/Handbook-of-AI-and-Big-Data-Applications-in-Investments_Front-Cover.jpg"
+    },
+    {
+        "id": "73e53ec0-1ab5-43b7-95f5-480f144f0619",
+        "title": "Valuation Handbook — International Guide to Cost of Capital: 2022 Summary Edition",
+        "description": "The cost of capital is the expected rate of return that the market requires to attract funds to an investment and is one of the most important concepts in finance. A good understanding of this is essential for making global investment decisions.",
+        "date": "17 Jan 2023",
+        "authors": "James Harrington, Carla Nunes, CFA, Anas Aboulamer, Roger Grabowski",
+        "pdf_url": "cfa-publications/pdfs/igcc-summary-edition-2022.pdf",
+        "image_url": "cfa-publications/images/Cover-from-igcc-summary-edition-2022-2.jpg"
+    },
+    {
+        "id": "2b4c504a-624c-4596-b1b4-ce933e3b37d0",
+        "title": "ESG Investment Outcomes, Performance Evaluation, and Attribution",
+        "description": "ESG investment strategies have experienced massive inflows in recent years, but investors need better tools to evaluate performance.",
+        "date": "17 Oct 2022",
+        "authors": "Stephen Horan, PhD, CAIA, CFA, CIPM, Elroy Dimson, FSIP, PhD, Clive Emery, Kenneth Blay, Glen Yelton, Ankit Agarwal, CFA",
+        "pdf_url": "cfa-publications/pdfs/Horan-ESG_RF_Brief_2022_Online.pdf",
+        "image_url": "cfa-publications/images/Horan_RF_Brief_2022_Cover.png"
+    },
+    {
+        "id": "8eeb8012-45be-4d85-a186-57dc8d50b617",
+        "title": "Middle East Capital Markets: Challenges and Opportunities",
+        "description": "This brief covers the history, current characteristics, and challenges and opportunities of 10 capital markets from the Middle East.",
+        "date": "15 Jul 2022",
+        "authors": "Bogdan Bilaus, CFA, Luis Garcia-Feijóo, CFA, CIPM",
+        "pdf_url": "cfa-publications/pdfs/rfbr-middle-east-capital-markets.pdf",
+        "image_url": "cfa-publications/images/Cover-from-ME_Markets_RF_Brief_2022_Online.png"
+    },
+    {
+        "id": "37fd7738-a0c9-4e2d-9293-d16c79ccc556",
+        "title": "Managing Material Risk",
+        "description": "This paper uses additional factors to extend current methods for long-term risks.",
+        "date": "07 Jul 2022",
+        "authors": "Richard Bookstaber, Dhruv Sharma",
+        "pdf_url": "cfa-publications/pdfs/rfbr-managing-material-risk.pdf",
+        "image_url": "cfa-publications/images/Cover-from-Bookstaber_RF_2022_Online.png"
+    },
+    {
+        "id": "35000f9d-a9b7-410a-aa68-f111fa0c8b13",
+        "title": "Stock Buyback Motivations and Consequences: A Literature Review",
+        "description": "The growing importance of stock buybacks has raised many questions about their costs and benefits. This analysis reviews relevant research, considers practitioner views, and provides an overall assessment of stock buybacks and their implications.",
+        "date": "09 Feb 2022",
+        "authors": "Alvin Chen, Olga Obizhaeva",
+        "pdf_url": "cfa-publications/pdfs/rflr-stock-buybacks.pdf",
+        "image_url": "cfa-publications/images/stock-buybacks-cover-sitecore.jpg"
+    },
+    {
+        "id": "22676934-2501-4da8-b3d3-327f95969796",
+        "title": "Investment Luminaries and Their Insights: 25 Years of the Research Foundation Vertin Award",
+        "description": "In this publication, these luminaries share insights and critical investment lessons.",
+        "date": "09 Dec 2021",
+        "authors": "Bud Haslett, FRM, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-25-years-vertin-award.pdf",
+        "image_url": "cfa-publications/images/Cover-from-Investment-Luminaries-and-Their-Insights-25-Years-of-the-Research-Foundation-Vertin-Award.png"
+    },
+    {
+        "id": "1398d498-73dd-4349-b607-95ab7d2a3d2a",
+        "title": "Puzzles of Inflation, Money, and Debt: Applying the Fiscal Theory of the Price Level",
+        "description": "The fiscal theory of the price level (FTPL) solves puzzles raised by standard monetary theories.",
+        "date": "29 Nov 2021",
+        "authors": "Thomas Coleman, Bryan Oliver, Laurence Siegel",
+        "pdf_url": "cfa-publications/pdfs/rfbr-puzzles-of-inflation.pdf",
+        "image_url": "cfa-publications/images/Cover-from-Puzzles-of-Inflation-Money-and-Debt-Applying-the-Fiscal-Theory-of-the-Price-Level.png"
+    },
+    {
+        "id": "9be3fafa-73f0-4b8b-baba-3d925f89dc4e",
+        "title": "Valuation Handbook — International Guide to Cost of Capital: 2021 Summary Edition",
+        "description": "The cost of capital is the expected rate of return that the market requires to attract funds to an investment and is one of the most important concepts in finance. A good understanding of this is essential for making global investment decisions.",
+        "date": "06 Oct 2021",
+        "authors": "James Harrington, Carla Nunes, CFA, Anas Aboulamer, Roger Grabowski",
+        "pdf_url": "cfa-publications/pdfs/igcc-summary-edition-2021.pdf",
+        "image_url": "cfa-publications/images/igcc-cover-sitecore.jpg"
+    },
+    {
+        "id": "0bc76964-2cc3-4eb0-8eff-c25834b19aa3",
+        "title": "Defined Contribution Plans: Challenges and Opportunities for Plan Sponsors",
+        "description": "Most American workers depend on defined-contribution plans to provide for retirement, but experts agree that the basic plan design is flawed. To guide plan sponsors, this publication examines key issues and offers design and policy recommendations.",
+        "date": "11 Aug 2021",
+        "authors": "Jeffery Bailey, CFA, Kurt Winkelmann",
+        "pdf_url": "cfa-publications/pdfs/rf-bailey-defined-contribution.pdf",
+        "image_url": "cfa-publications/images/Bailey_RF_2021_Cover_Sitecore.jpg"
+    },
+    {
+        "id": "2b39d3cc-3aee-42b4-a86f-ee3ed50f9686",
+        "title": "The Incredible Upside-Down Fixed-Income Market",
+        "description": "In an unprecedented development, many global bond markets have been trading at negative nominal yields. This publication provides in-depth analysis of the causes of negative yields, the economic and financial impacts, and the outlook for investors.",
+        "date": "29 Jun 2021",
+        "authors": "Vineer Bhansali",
+        "pdf_url": "cfa-publications/pdfs/rf-bhansali-negative-interest-rates.pdf",
+        "image_url": "cfa-publications/images/rf-bhansali-cover.jpg"
+    },
+    {
+        "id": "ea3970b6-063a-45e1-9af0-1d51db550b65",
+        "title": "The Emerging Asia Pacific Capital Markets: Challenges and Opportunities",
+        "description": "Asia-Pacific emerging and frontier markets continue to evolve rapidly. With insights from authors based in 11 local markets, this publication offers insights about regulatory developments, market structure, and financial history in the region.",
+        "date": "24 May 2021",
+        "authors": "Larry Cao, CFA, Luis Garcia-Feijóo, CFA, CIPM",
+        "pdf_url": "cfa-publications/pdfs/rfbr-apac-capital-markets.pdf",
+        "image_url": "cfa-publications/images/rf-apac-capital-markets.png"
+    },
+    {
+        "id": "99927788-5a91-421c-a8f6-d8d7dbc098cf",
+        "title": "Capitalism for Everyone",
+        "description": "Although capitalism has been the most successful economic system in history, it has come under increasing criticism in recent years. To address this growing distrust, the authors advocate reforms to make capitalism more inclusive and accountable.",
+        "date": "18 May 2021",
+        "authors": "Joachim Klement, CFP, CFA, Michael Falk, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-capitalism-for-everyone.pdf",
+        "image_url": "cfa-publications/images/capitalism-for-everyone.png"
+    },
+    {
+        "id": "b10bebf2-ffe0-47b8-8be8-a11ece06b376",
+        "title": "Stocks, Bonds, Bills, and Inflation® (SBBI®): 2021 Summary Edition",
+        "description": "The SBBI® Summary Edition will help investment professionals gain an understanding of major asset class returns, return calculations, and the long term impact of size, value/growth, and liquidity on returns.",
+        "date": "14 May 2021",
+        "authors": "Roger Ibbotson, PhD, James Harrington",
+        "pdf_url": "cfa-publications/pdfs/sbbi-summary-edition-2021.pdf",
+        "image_url": "cfa-publications/images/SBBI-2021-Summary-Cover_Sitecore.jpg"
+    },
+    {
+        "id": "fe51bc55-1acc-47ef-949f-66b3d2ed2ae2",
+        "title": "Geo-Economics: The Interplay between Geopolitics, Economics, and Investments",
+        "description": "As geopolitical factors increasingly influence markets, investors need to gauge the impact on investments. Most experts consider political risks unquantifiable, but this publication shows how such risks can be quantified and used for risk management.",
+        "date": "28 Apr 2021",
+        "authors": "Joachim Klement, CFP, CFA",
+        "pdf_url": "cfa-publications/pdfs/geo-economics-full.pdf",
+        "image_url": "cfa-publications/images/geo-economics-cover-sitecore.jpg"
+    },
+    {
+        "id": "f6869e9a-7f70-47ab-be33-53befdb550fd",
+        "title": "Bursting the Bubble: Rationality in a Seemingly Irrational Market",
+        "description": "Stock market bubbles fascinate researchers because bubbles have major implications for market efficiency, but their existence is disputed. This book evaluates academic research and other analysis of bubbles and their significance for investors.",
+        "date": "02 Apr 2021",
+        "authors": "David DeRosa",
+        "pdf_url": "cfa-publications/pdfs/rf-derosa-bubbles.pdf",
+        "image_url": "cfa-publications/images/DeRosa_RF_2021_Cover_sitecore.jpg"
+    },
+    {
+        "id": "20cff536-3ca2-45cc-9ced-0ab572a7fa03",
+        "title": "Cryptoassets: The Guide to Bitcoin, Blockchain, and Cryptocurrency for Investment Professionals",
+        "description": "Download the CFA Institute Research Foundation guide to cryptoassets and blockchain to learn about cryptocurrency basics, crypto trading, cryptoasset regulations, and more.",
+        "date": "07 Jan 2021",
+        "authors": "Matt Hougan, David Lawant",
+        "pdf_url": "cfa-publications/pdfs/rfbr-cryptoassets.pdf",
+        "image_url": "cfa-publications/images/rf-cryptoassets.png"
+    },
+    {
+        "id": "82fc778a-6d8f-4371-a66d-7e8833e109cf",
+        "title": "Learning about Risk Management: Insights from Unconventional Risk-Takers",
+        "description": "Think financial professionals have a corner on risk management? Think again. Learn how a Hollywood movie mogul, a poker champion, and a big wave surfer can offer key lessons in risk management, risk mitigation, and client communication.",
+        "date": "05 Oct 2020",
+        "authors": "Allison Schrager",
+        "pdf_url": "cfa-publications/pdfs/rfbr-schrager-risk-management.pdf",
+        "image_url": "cfa-publications/images/learning-about-risk-management.png"
+    },
+    {
+        "id": "41cce88f-8998-4014-bb3f-dc9c46a5830e",
+        "title": "Stocks, Bonds, Bills, and Inflation® (SBBI®): 2020 Summary Edition",
+        "description": "The SBBI® Summary Edition will help investment professionals gain an understanding of major asset class returns, return calculations, and the long term impact of size, value/growth, and liquidity on returns.",
+        "date": "31 Aug 2020",
+        "authors": "Roger Ibbotson, James Harrington",
+        "pdf_url": "cfa-publications/pdfs/rf-sbbi-summary-edition.pdf",
+        "image_url": "cfa-publications/images/sbbi-cover.jpg"
+    },
+    {
+        "id": "6666074d-adcc-4b6e-b459-947f522eb4ab",
+        "title": "Artificial Intelligence in Asset Management",
+        "description": "Artificial intelligence (AI) has improved portfolio management, trading, and risk management practices by increasing efficiency, accuracy, and compliance. Yet the use of AI can also create new risks and challenges.",
+        "date": "28 Aug 2020",
+        "authors": "Söhnke Bartram, Jürgen Branke, Mehrshad Motahari",
+        "pdf_url": "cfa-publications/pdfs/rflr-artificial-intelligence-in-asset-management.pdf",
+        "image_url": "cfa-publications/images/rflr-artificial-intelligence.jpg"
+    },
+    {
+        "id": "2764658e-5632-4885-80f2-e66207a5889b",
+        "title": "Is There a Retirement Crisis? An Exploration of the Current Debate",
+        "description": "Empirical studies of retirement preparedness find that many US households face a potential crisis. This monograph provides a critical survey of the studies and evaluates the outlook for seven other industrialized countries.",
+        "date": "06 Jul 2020",
+        "authors": "George Mackenzie",
+        "pdf_url": "cfa-publications/pdfs/is-there-a-retirement-crisis.pdf",
+        "image_url": "cfa-publications/images/RF_Mackenzie_Retirement_Cover.jpg"
+    },
+    {
+        "id": "5454ceb6-9993-4598-b334-a9fc9ea3a263",
+        "title": "Robert C. Merton and the Science of Finance: A Collection",
+        "description": "Robert C. Merton, 1997 Nobel Prize winner in economics, has been at the forefront of research on many topics in financial economics. In this publication, leading researchers explain Merton’s impact on financial theory and practice.",
+        "date": "18 Jun 2020",
+        "authors": "Luis Garcia-Feijóo, CFA, CIPM, Laurence Siegel, Timothy Kohn",
+        "pdf_url": "cfa-publications/pdfs/rfbr-robert-merton-science-finance.pdf",
+        "image_url": "cfa-publications/images/the-science-of-finance.png"
+    },
+    {
+        "id": "b0c1a25c-3a98-48ee-8ec1-ab1f66be4710",
+        "title": "ESG and Responsible Institutional Investing Around the World: A Critical Review",
+        "description": "This survey examines academic research on environmental, social, and governance (ESG) investing. Focusing on the growing role of institutional investors, the analysis highlights the importance of assessing portfolio risk exposure to climate change.",
+        "date": "28 May 2020",
+        "authors": "Pedro Matos",
+        "pdf_url": "cfa-publications/pdfs/rflr-esg-and-responsible-institutional-investing.pdf",
+        "image_url": "cfa-publications/images/esg-and-responsible-institutional-investing.jpg"
+    },
+    {
+        "id": "c8a15527-ec10-479c-80ef-999015d2cf1e",
+        "title": "The VIX Index and Volatility-Based Global Indexes and Trading Instruments",
+        "description": "Tools based on volatility indexes are widely used for hedging, diversification, risk management, and alpha generation, but investors should carefully study the pricing, risks, and other key aspects before deciding to use such products.",
+        "date": "28 Apr 2020",
+        "authors": "Matthew Moran, Berlinda Liu",
+        "pdf_url": "cfa-publications/pdfs/rfbr-moran-vix-volatility.pdf",
+        "image_url": "cfa-publications/images/the-vix-index.png"
+    },
+    {
+        "id": "dffb7ece-4128-4c1a-94da-52a7f439da35",
+        "title": "Research Foundation Review 2019",
+        "description": "The Research Foundation Review 2019 summarizes the offerings from the CFA Institute Research Foundation over the past year—books, literature reviews, workshop presentations, and other relevant material.",
+        "date": "17 Mar 2020",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-review-2019.pdf",
+        "image_url": "cfa-publications/images/rf-review-2019.png"
+    },
+    {
+        "id": "dff59fb8-51c0-4ae7-8c02-060ba067805f",
+        "title": "ETFs and Systemic Risks",
+        "description": "The growth of exchange-traded funds (ETFs) has raised questions about their effect on market stability. This publication examines the impact of ETFs on the financial system and proposes regulatory actions to mitigate risks.",
+        "date": "22 Jan 2020",
+        "authors": "Maureen O’Hara, Ayan Bhattacharya",
+        "pdf_url": "cfa-publications/pdfs/etfs-and-systemic-risks.pdf",
+        "image_url": "cfa-publications/images/efts-and-systemic-risk.png"
+    },
+    {
+        "id": "a493af2d-061b-4e96-bec8-c49b1898133d",
+        "title": "Performance Attribution: History and Progress",
+        "description": "Performance attribution tries to identify sources of portfolio performance and measure the impact of portfolio managers’ decisions. This publication traces attribution analysis from its beginning in the 1970s to the more complex models used today.",
+        "date": "23 Dec 2019",
+        "authors": "Carl Bacon, CIPM",
+        "pdf_url": "cfa-publications/pdfs/rflr-performance-attribution.pdf",
+        "image_url": "cfa-publications/images/RF_Bacon-lit-review_cover.jpg"
+    },
+    {
+        "id": "1f0f73b2-91b0-4b04-a746-3a3d2ea03eb5",
+        "title": "Behavioral Finance: The Second Generation",
+        "description": "The first generation of behavioral finance described investors as irrational; the second generation describes them as normal—neither rational nor irrational. This monograph focuses on new behavioral insights and provides guidance for avoiding errors.",
+        "date": "02 Dec 2019",
+        "authors": "Meir Statman, PhD",
+        "pdf_url": "cfa-publications/pdfs/behavioral-finance-the-second-generation.pdf",
+        "image_url": "cfa-publications/images/Behavioral-Finance_Cover.jpg"
+    },
+    {
+        "id": "dbb47c15-1b90-4215-a826-bd66b02dd0b9",
+        "title": "African Capital Markets: Challenges and Opportunities",
+        "description": "African markets have experienced rapid transformation but face fundamental challenges, such as illiquidity and access. To help investors, local authors share their perspectives on current developments and future trends for key markets.",
+        "date": "21 Nov 2019",
+        "authors": "Heidi Raubenheimer, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-african-capital-markets.pdf",
+        "image_url": "cfa-publications/images/rf-african-capital-markets.png"
+    },
+    {
+        "id": "ea18a586-4ef3-4d2f-84fc-897333373256",
+        "title": "The Productivity Puzzle: Restoring Economic Dynamism",
+        "description": "Economists cannot explain why productivity growth slowed after 2005 in the US and advanced economies. But an innovative interdisciplinary approach goes beyond traditional economic analysis to offer policy solutions and new insights for investors.",
+        "date": "30 Oct 2019",
+        "authors": "David Adler, Laurence Siegel",
+        "pdf_url": "cfa-publications/pdfs/the-productivity-puzzle.pdf",
+        "image_url": "cfa-publications/images/Adler-Productivity-cover.jpg"
+    },
+    {
+        "id": "13e38432-4cce-4020-b6c7-b8f64842caee",
+        "title": "Secure Retirement: Connecting Financial Theory and Human Behavior",
+        "description": "Financial science can be used to improve the retirement planning effort. Despite a vast amount of literature on the topic, Secure Retirement recognizes the need to validate this knowledge and develop a comprehensive framework for investors.",
+        "date": "18 Sep 2019",
+        "authors": "Jacques Lussier, PhD, CFA",
+        "pdf_url": "cfa-publications/pdfs/secure-retirement.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "896f9846-c978-4a34-afc2-b3e56564922c",
+        "title": "A Cash-Flow Focus for Endowments and Trusts",
+        "description": "No spending rule is perfect. But many trustees who now base spending on market values would benefit by focusing on asset cash flows instead.",
+        "date": "06 Aug 2019",
+        "authors": "James Garland, CFA",
+        "pdf_url": "cfa-publications/pdfs/cash-flow-focus-endowments-trusts.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "ccf52c93-271e-4e08-9485-24ee5d7726e0",
+        "title": "University Endowments: A Primer",
+        "description": "On the one hand, these institutions enjoy supportive characteristics that allow them to seek ... Google Play iBook Kindle Publisher Information CFA Institute Research Foundation 20 pages",
+        "date": "31 Jul 2019",
+        "authors": "Richard Franz, Stephan Kranner",
+        "pdf_url": "cfa-publications/pdfs/rf-brief-franz-university-endowments.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "9d593b61-4f58-46d4-9242-1ecaf2b2dc15",
+        "title": "Tontines: A Practitioner’s Guide to Mortality-Pooled Investments",
+        "description": "Tontines and similar mortality-pooled investment arrangements offer a useful and unique value proposition to the global retirement challenge.",
+        "date": "10 Jul 2019",
+        "authors": "Richard Fullmer, CFA",
+        "pdf_url": "cfa-publications/pdfs/fullmer-tontines-rf-brief.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "36cf895e-a724-4596-a9c1-cf0f1e9f7aac",
+        "title": "Ten Years After: Reflections on the Global Financial Crisis",
+        "description": "Summary ... They conclude that regulators should consider time-varying capital requirements and ... He shows evidence that systemic risk has been reduced dramatically since the ... Related",
+        "date": "24 May 2019",
+        "authors": "Laurence Siegel, Luis Garcia-Feijóo, CFA, CIPM",
+        "pdf_url": "cfa-publications/pdfs/10-years-after-global-financial-crisis.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "235b623b-6e2f-4231-97a1-cc0302f8b828",
+        "title": "Research Foundation Review 2018",
+        "description": "The Research Foundation Review 2018 summarizes the offerings from the CFA Institute Research Foundation over the past year—books, literature reviews, workshop presentations, and other relevant material.",
+        "date": "19 Apr 2019",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/research-foundation-review-2018.pdf",
+        "image_url": "cfa-publications/images/RF-2018-Review-cover.jpg"
+    },
+    {
+        "id": "e78de0c7-2a7e-4a1e-a8a7-e77553a65c9a",
+        "title": "Investment Governance for Fiduciaries",
+        "description": "Effective investment governance is an enabler of good stewardship, and for this reason it should, in our view, be of interest to all fiduciaries, no matter the size of the pool of assets or the nature of the beneficiaries.",
+        "date": "19 Apr 2019",
+        "authors": "Michael Drew, Adam Walk",
+        "pdf_url": "cfa-publications/pdfs/investment-governance-for-fiduciaries.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "af38e962-c17f-44dd-9787-acf2b96225b7",
+        "title": "Relationship Alpha",
+        "description": "Adapted from Charlotte Beyer’s 2017 book, Wealth Management Unwrapped, Revised and Expanded, comes a new term—relationship alpha, a competitive advantage for firms serving private clients.",
+        "date": "04 Apr 2019",
+        "authors": "Charlotte Beyer",
+        "pdf_url": "cfa-publications/pdfs/relationship-alpha.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "0be632b7-4695-4765-8009-4b9f126698d7",
+        "title": "Popularity: A Bridge between Classical and Behavioral Finance",
+        "description": "The PAPM goes even further, providing a theory in an equilibrium framework by ... We did this for five characteristics. First, we argue that companies with high brand values are popular.",
+        "date": "10 Dec 2018",
+        "authors": "Roger Ibbotson, PhD, Thomas Idzorek, CFA, Paul Kaplan, CFA, James Xiong, CFA",
+        "pdf_url": "cfa-publications/pdfs/popularity-bridge-between-classical-and-behavioral-finance.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "45e4d760-027e-4c68-932f-301b0634ec21",
+        "title": "The Future of Investment Management",
+        "description": "The Fundamental Law of Active Management: Information Ratios Depend on Skill, ... Bibliography 72 ... Trend 1. Active to Passive 74 Trend 2. Increased Competition 78 Trend 3.",
+        "date": "12 Nov 2018",
+        "authors": "Ronald Kahn",
+        "pdf_url": "cfa-publications/pdfs/future-of-investment-management-kahn.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "7d258410-d3b1-47a3-a6ad-5511285665bc",
+        "title": "Some Like It Hedged",
+        "description": "Some Like It Hedged ... Hedge passively (i.e., maintain a constant hedge ratio). ... An active hedging program seeks to reduce the risk of the foreign currency exposure ... Additional Formats",
+        "date": "07 Nov 2018",
+        "authors": "Momtchil Pojarliev, CFA",
+        "pdf_url": "cfa-publications/pdfs/some-like-it-hedged.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "d0061a4e-934e-4234-8e5b-73e2c740027e",
+        "title": "Mainstreaming Sustainable Investing",
+        "description": "Both are wrong. ... This research is part of the growing body of work collected over the last five years ... Feiner, a founding partner and head of ESG research and advisory at Arabesque Asset ...",
+        "date": "25 Oct 2018",
+        "authors": "Michael Greis, CFA",
+        "pdf_url": "cfa-publications/pdfs/mainstreaming-sustainable-investing.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "28d45772-5704-4485-8247-e64e0da819f9",
+        "title": "Foundations of High-Yield Analysis",
+        "description": "27 August 2018 Research Foundation Foundations of High-Yield Analysis Martin S. Fridson, CFA This Research Foundation brief explores various dimensions of the high-yield bond ...",
+        "date": "27 Aug 2018",
+        "authors": "Martin Fridson, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v4-n5-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "7ddee6ee-fb78-4b87-b1fb-72d738438935",
+        "title": "The Current State of Quantitative Equity Investing",
+        "description": "Indeed, in 2011, the president of the American Finance Association described the ... In short, quantitative equity management is alive and well and intellectually active ... Additional Formats",
+        "date": "05 Jun 2018",
+        "authors": "Ying Becker, Marc Reinganum",
+        "pdf_url": "cfa-publications/pdfs/becker-rf-lit-review-2018.pdf",
+        "image_url": "cfa-publications/images/Becker-cover.jpg"
+    },
+    {
+        "id": "4f9a14d6-5662-48fd-8496-455fc6a42399",
+        "title": "Risk Profiling and Tolerance: Insights for the Private Wealth Manager",
+        "description": "1 June 2018 Research Foundation Risk Profiling and Tolerance: Insights for the Private Wealth Manager Joachim Klement, CFP, CFA",
+        "date": "01 Jun 2018",
+        "authors": "Joachim Klement, CFP, CFA",
+        "pdf_url": "cfa-publications/pdfs/risk_compilation_2018.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "338873bb-d07f-48cb-9e34-46419a522466",
+        "title": "Risk Tolerance and Circumstances",
+        "description": "In Europe, the Markets in Financial Instruments Directive (MiFID) requires financial advisers ... 35, 4). ... The survey allowed the authors to measure risk preferences and perceptions in real ...",
+        "date": "01 Mar 2018",
+        "authors": "Elke Weber, Joachim Klement, CFP, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v4-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "d2694370-9022-4c8e-9078-dfcc60b2edc2",
+        "title": "Research Foundation Review 2017",
+        "description": "1 March 2018 Research Foundation Research Foundation Review 2017 CFA Institute Research Foundation Research Foundation Review 2017 View the full book (PDF)",
+        "date": "01 Mar 2018",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2018-n2-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "cd00fda7-f786-4e69-818d-20748fea4860",
+        "title": "Alternative Investments: A Primer for Investment Professionals",
+        "description": "Learn about alternative investments with CFA Institute. Understand how alternative investing strategies compare to traditional investing and portfolio management.",
+        "date": "01 Mar 2018",
+        "authors": "Donald Chambers, Keith Black, CFA, Nelson Lacey",
+        "pdf_url": "cfa-publications/pdfs/rf-v2018-n1-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "18d4a664-5322-43e6-8e4b-70ad5fa0edd9",
+        "title": "Handbook on Sustainable Investments: Background Information and Practical Examples for Institutional Asset Owners",
+        "description": "1 December 2017 Research Foundation Handbook on Sustainable Investments: Background Information and Practical Examples for ... Swiss Sustainable Finance ... Additional Formats",
+        "date": "01 Dec 2017",
+        "authors": "Swiss Finance",
+        "pdf_url": "cfa-publications/pdfs/rf-v2017-n5-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "a000308d-8b83-4aed-aaba-b496bc92908c",
+        "title": "Equity Valuation: Science, Art, or Craft?",
+        "description": "Caroline Jonas ... The authors point to the limits of widely used valuation techniques. ... Additional Formats ... Publisher Information The CFA Institute Research Foundation 103 pages",
+        "date": "01 Dec 2017",
+        "authors": "Frank Fabozzi, CFA, Sergio Focardi, Caroline Jonas",
+        "pdf_url": "cfa-publications/pdfs/rf-v2017-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "d502a24b-5956-408c-887b-887d67d4016c",
+        "title": "The Equity Risk Premium: A Contextual Literature Review",
+        "description": "1 November 2017 Research Foundation The Equity Risk Premium: A Contextual Literature Review Laurence B. Siegel ... Publisher Information CFA Institute Research Foundation 30 pages",
+        "date": "01 Nov 2017",
+        "authors": "Laurence Siegel",
+        "pdf_url": "cfa-publications/pdfs/rflrv12n11.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "1e04ed56-be85-45bc-8013-ccc17beee94d",
+        "title": "A Primer For Investment Trustees: Understanding Investment Committee Responsibilities",
+        "description": "1 October 2017 Research Foundation A Primer For Investment Trustees: Understanding Investment Committee Responsibilities Jeffery V. Bailey, CFA Thomas M. Richards, CFA",
+        "date": "01 Oct 2017",
+        "authors": "Jeffery Bailey, CFA, Thomas Richards, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2017-n3-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "cf23bd73-f763-4725-8f17-4c2e3d02511d",
+        "title": "New Vistas in Risk Profiling",
+        "description": "What is important is that there is a crucial distinction to be made between ... In the end, the role of suitability is to steer investors to better outcomes, not ... Ability to Take Risk",
+        "date": "01 Aug 2017",
+        "authors": "Greg Davies",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v3-n5-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "84fefd5d-8704-4dff-beae-c126e54b7b03",
+        "title": "Asian Structured Products",
+        "description": "These transactions are almost never disclosed to third parties; thus, this multi- ... Although the products themselves are quite visible, it is impossible to know exactly how ... 3. Leverage",
+        "date": "01 Aug 2017",
+        "authors": "Angel Wu, Clarke Pitts",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v3-n6-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "5ffd8d1e-ecea-4c4e-99e2-8e9e3763f658",
+        "title": "FinTech and RegTech in a Nutshell, and the Future in a Sandbox",
+        "description": "Learn about FinTech and RegTech with CFA Institute. Understand how financial and regulatory technology relate through industry regulations and sandboxes.",
+        "date": "01 Jul 2017",
+        "authors": "Douglas Arner, Janos Barberis, eds., Ross Buckley",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v3-n4-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "6f5da04f-106c-4194-ab3e-ea059aa159ee",
+        "title": "Financial Risk Tolerance: A Psychometric Review",
+        "description": "John E. Grable ... Generally, it is easier to measure cognitive, rather than affective, aspects of human ... For instance, on a cognitive test, not all questions are equally difficult.",
+        "date": "01 Jun 2017",
+        "authors": "John Grable",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v4-n1-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "20e1c454-ccf4-455a-907e-d766e0cd96ac",
+        "title": "投资管理人的选择",
+        "description": "1 June 2017 Research Foundation 投资管理人的选择 The Importance of Manager Selection Scott D. Stewart, CFA 投资管理人的选择 - The Importance of Manager Selection View the full book (PDF)",
+        "date": "01 Jun 2017",
+        "authors": "Scott Stewart, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfv2017n21-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "337eea6c-24b5-4db7-9d60-c5995b6a3787",
+        "title": "Research Foundation Review 2016",
+        "description": "1 May 2017 Research Foundation Research Foundation Review 2016 CFA Institute Research Foundation Review 2016 View this book (PDF) The Research Foundation Review 2016 summarizes the ...",
+        "date": "01 May 2017",
+        "authors": "CFA Institute",
+        "pdf_url": "cfa-publications/pdfs/rf-v2017-n1-full.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "68709783-d0c8-4f82-9f52-0c2b254c1e71",
+        "title": "Impact of Reporting Frequency on UK Public Companies",
+        "description": "Before 2007, UK companies were also encouraged by regulators to issue “trading ... 2 ... Instead, the IMS was to contain the following: ... (European Parliament and Council 2004, Art. 6.1)",
+        "date": "01 Mar 2017",
+        "authors": "Robert Pozen, Suresh Nallareddy, Shiva Rajgopal, PhD",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v3-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "ede11fa0-05d9-44bd-9298-9a358ebf9d47",
+        "title": "Factor Investing and Asset Allocation",
+        "description": "This monograph draws heavily on the vast body of knowledge that has been built by ... Additional Formats ... The CFA Institute Research Foundation 172 pages ISSN/ISBN: 978-1-944960-14-8",
+        "date": "01 Dec 2016",
+        "authors": "Vasanttilak Naik, Mukundan Devarajan, Andrew Nowobilski, Sébastien Page, CFA, Niels Pedersen",
+        "pdf_url": "cfa-publications/pdfs/rf-v2016-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "574c4957-3324-4203-bff6-b733af6e3aa2",
+        "title": "Financial Market History: Reflections on the Past for Investors Today",
+        "description": "1 December 2016 Research Foundation Financial Market History: Reflections on the Past for Investors Today David Chambers Elroy Dimson, FSIP, PhD ... Additional Formats",
+        "date": "01 Dec 2016",
+        "authors": "David Chambers, Elroy Dimson, FSIP, PhD",
+        "pdf_url": "cfa-publications/pdfs/financial-market-history-full-book.pdf",
+        "image_url": "cfa-publications/images/financial-market-history-book-cover.jpg"
+    },
+    {
+        "id": "da4e4e56-15a7-4bd6-8127-c4592da9aeab",
+        "title": "Technical Analysis: Modern Perspectives",
+        "description": "1 November 2016 Research Foundation Technical Analysis: Modern Perspectives Gordon Scott, CMT Michael Carr, CMT Mark Cremonie, CMT, CFA",
+        "date": "01 Nov 2016",
+        "authors": "Gordon Scott, CMT, Michael Carr, CMT, Mark Cremonie, CMT, CFA",
+        "pdf_url": "cfa-publications/pdfs/rflrv11n11.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "4a1dc96f-71b8-4af9-afd5-7064e3c91fcf",
+        "title": "Gender Diversity in Investment Management: New Research for Practitioners on How to Close the Gender Gap",
+        "description": "We drew some questions from surveys conducted of the general population, which then ... Footnote(s) ... Delaware Journal of Corporate Law, vol 39, no. 2 (2014): www.djcl.org/volume-39/2014-%e2 ...",
+        "date": "01 Sep 2016",
+        "authors": "Rebecca Fender, CFA, Renée Adams, Brad Barber, Terrance Odean",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v2-n5-1.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "6bcc76ce-be23-4fd9-8a5e-84d3bdce2829",
+        "title": "Portfolio Structuring and the Value of Forecasting",
+        "description": "This brief offers analysis of factor investing reviews types of factors and risk premiums as well as the value of forecasting, including issues with accuracy and improving efficiency.",
+        "date": "01 Aug 2016",
+        "authors": "Jacques Lussier, PhD, CFA, Andrew Ang, PhD, Mark Carhart, CFA, Craig Bodenstab, CFA, Philip Tetlock, Warren Hatch, CFA, David Rapach",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v2-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "89c3dec2-d8c0-4f6c-aa3c-80411da43972",
+        "title": "Let’s All Learn How to Fish . . . . to Sustain Long-Term Economic Growth",
+        "description": "Today’s economic growth challenges will become greater in the future because of the world’s aging population, fertility trends and current levels, and current entitlement policies.",
+        "date": "01 May 2016",
+        "authors": "Michael Falk, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2016-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "3dfbf7ac-3cb0-43b4-aaea-46e002bb3d2e",
+        "title": "Overcoming the Notion of a Single Reference Currency: A Currency Basket Approach",
+        "description": "G. Ballocchi,C. Kutscher,G. Schwarz 2016 Die statistische Evaluation von ... Risk Management for Central Bank Foreign Reserves European Central Bank ... Publisher Information",
+        "date": "01 Apr 2016",
+        "authors": "Giuseppe Ballocchi, CFA, Hélie d’Hautefort",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v2-n3-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "aee6ad8c-d099-4994-8b9f-5228c444e467",
+        "title": "Research Foundation Review 2015",
+        "description": "The Research Foundation Review 2015 summarizes the offerings from the CFA Institute Research Foundation over the past year—monographs, literature reviews, workshop presentations, and other relevant material.",
+        "date": "01 Feb 2016",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2016-n1-full-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "84c67410-ab88-4783-9fe8-f3c918a514d9",
+        "title": "Risk Profiling through a Behavioral Finance Lens",
+        "description": "Behavioral finance attempts to understand and explain actual investor behavior rather than theorize about it. In this context, tensions exist between the willingness to take risk and the ability to take risk in terms of known and unknown risks.",
+        "date": "01 Feb 2016",
+        "authors": "Michael Pompian, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v2-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "dbd0b241-c0dc-49cc-9b2b-6f2b3be8c393",
+        "title": "Annuities and Retirement Income Planning",
+        "description": "That said, cost matters—a lot. The prudent investor should thoroughly investigate the myriad of implicit and ... 16 The death benefit is adjusted for aggregate withdrawals before death.",
+        "date": "01 Feb 2016",
+        "authors": "Patrick Collins",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v2-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "fde91358-319b-4677-86b7-283f517861e2",
+        "title": "Longevity Risk and Retirement Income Planning",
+        "description": "The past 50 years have seen an abundance of research on retirement planning and longevity risk. Reviewed here is the academic side of the research and its varied viewpoints and nuances.",
+        "date": "01 Dec 2015",
+        "authors": "Patrick Collins, Huy Lam, Josh Stampfli",
+        "pdf_url": "cfa-publications/pdfs/rflr-v10-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "d0921a77-ce84-44aa-80fd-7e6bae9ecac7",
+        "title": "The Industrial Organization of the Global Asset Management Business",
+        "description": "The dynamics of the asset management business are complex and geographically diverse. Products and vendors compete within and across markets and often shade into each other.",
+        "date": "01 Nov 2015",
+        "authors": "Ingo Walter",
+        "pdf_url": "cfa-publications/pdfs/rf-v2015-n5-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "0c3229f3-8c1a-4a01-8b87-a3d70c4b69ae",
+        "title": "Trading and Electronic Markets: What Investment Professionals Need to Know",
+        "description": "The true meaning of investment discipline is to trade only when you rationally expect that you will achieve your desired objective. Accordingly, managers must thoroughly understand why they trade.",
+        "date": "01 Oct 2015",
+        "authors": "Lawrence Harris, PhD, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2015-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "12f24b50-fe33-438b-9f52-cf183ae9f626",
+        "title": "A Comprehensive Guide to Exchange-Traded Funds (ETFs)",
+        "description": "Exchange-traded funds (ETFs) have become in their 25-year history one of the fastest growing segments of the investment management business.",
+        "date": "01 May 2015",
+        "authors": "Joanne Hill, PhD, Dave Nadig, Matt Hougan",
+        "pdf_url": "cfa-publications/pdfs/rf-v2015-n3-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "655b5089-ed3e-41ac-bbcd-39e9e6255ebd",
+        "title": "Research Foundation Year in Review 2014",
+        "description": "The Year in Review 2014 summarizes the offerings from the CFA Institute Research Foundation over the past year—monographs, literature reviews, workshop presentations, and other relevant material.",
+        "date": "01 May 2015",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2015-n2-full-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "1ce69951-71f1-408a-bbf9-74d5d02a9464",
+        "title": "Investor Risk Profiling: An Overview",
+        "description": "Gau, J., S. Segaller, and P. Sen 2012 Steve Jobs: The Lost Interview ... Kahnemann, D. 2012 Thinking, Fast and Slow Penguin ... Quarterly Journal of Economics Vol. 126 No. 1 43",
+        "date": "01 Apr 2015",
+        "authors": "Joachim Klement, CFP, CFA",
+        "pdf_url": "cfa-publications/pdfs/rfbr-v1-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "64b81faf-0dc8-4aec-a3c5-0c902e458deb",
+        "title": "The New Economics of Liquidity and Financial Frictions",
+        "description": "The New Economics of Liquidity and Financial Frictions is a book about a new branch of economics that is largely a synthesis of macro and finance.",
+        "date": "01 Dec 2014",
+        "authors": "David Adler",
+        "pdf_url": "cfa-publications/pdfs/rf-v2014-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "525d33ac-b434-4c0b-8abd-972d2dd5b104",
+        "title": "Islamic Finance: Ethics, Concepts, Practice",
+        "description": "Islamic economic thought and finance are rooted in Islamic ethics, but their ideals and means are not exclusive to Islam. The principles of Islamic finance emphasize market-based risk sharing of financing that promotes asset and enterprise,",
+        "date": "01 Nov 2014",
+        "authors": "Adeel Malik, PhD, Usman Hayat, CFA",
+        "pdf_url": "cfa-publications/pdfs/rflr-v9-n3-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "357864cf-3e39-4a0d-a8ca-c9771b9ccee1",
+        "title": "Investment Professionals and Fiduciary Duties",
+        "description": "Learn about the fiduciary duties of various investment professionals with CFA Institute. Understand the roles of investment advisers, asset managers, brokers, CFA charterholders & more.",
+        "date": "01 Sep 2014",
+        "authors": "Marianne Jennings",
+        "pdf_url": "cfa-publications/pdfs/rflr-v9-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "bd18ab87-455a-4bb3-abc2-ebfabb3c5855",
+        "title": "Investment Management: A Science to Teach or an Art to Learn?",
+        "description": "Following the 2007–09 financial crisis, mainstream finance theory was criticized for failing to forecast the market crash, which resulted in large losses for investors.",
+        "date": "01 May 2014",
+        "authors": "Frank Fabozzi, CFA, Sergio Focardi, Caroline Jonas",
+        "pdf_url": "cfa-publications/pdfs/rf-v2014-n3-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "8d53ceb8-b369-4268-933a-e20b4723dc75",
+        "title": "The Principal–Agent Problem in Finance",
+        "description": "This review tracks the development of asset/liability management from its roots in liability management outsourcing to its most recent interpretation as a broad liability-driven investing strategy.",
+        "date": "01 Apr 2014",
+        "authors": "Sunit Shah",
+        "pdf_url": "cfa-publications/pdfs/rflr-v9-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "1567258b-f713-4e32-8a51-f41567e3b0ae",
+        "title": "Research Foundation Year in Review 2013",
+        "description": "1 March 2014 Research Foundation Research Foundation Year in Review 2013 CFA Institute Research Foundation Research Foundation Year in Review 2013 View the full book (PDF)",
+        "date": "01 Mar 2014",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2014-n2-full-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "f9cbbaa2-8d2e-462d-8092-7f5db16d1555",
+        "title": "Environmental Markets: A New Asset Class",
+        "description": "Population growth, industrialization, and urbanization in the past 200 years have resulted in local, national, and global pollution of our environment. Markets, when designed properly, can be a powerful agent to combat this pollution.",
+        "date": "01 Jan 2014",
+        "authors": "Richard Sandor, PhD, Nathan Clark, Murali Kanakasabai, Rafael Marques",
+        "pdf_url": "cfa-publications/pdfs/rf-v2014-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "4502afe5-04c6-42f2-9100-3e32f6d720e7",
+        "title": "Manager Selection",
+        "description": "Manager selection is a critical step in implementing any investment program.",
+        "date": "01 Dec 2013",
+        "authors": "Scott Stewart, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2013-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "5dc0395b-35ba-4674-a56a-71efe6c406c7",
+        "title": "Errata",
+        "description": "This material provides a correction to Chapter 4 “Option Characteristics and Strategies: Risk and Return” in Fundamentals of Futures and Options by Roger G. Clarke, Harindra de Silva, CFA, and Steven Thorley, CFA.",
+        "date": "01 Nov 2013",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2013-n3-2-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "00a9786f-f9bb-4f36-8af7-cd503a1d69c5",
+        "title": "Fundamentals of Futures and Options (corrected April 2014)",
+        "description": "Derivative securities and markets have experienced tremendous worldwide growth since 1970. But even so, they are not always well understood.",
+        "date": "01 Nov 2013",
+        "authors": "Roger Clarke, Harindra de Silva, CFA, Steven Thorley, PhD, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2013-n3-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "8cbcb14f-b24b-488d-9b89-4a482705e7e3",
+        "title": "Ethics and Financial Markets: The Role of the Analyst",
+        "description": "The ethical issues that financial professionals face are no different from the ethical issues in any profession—or, indeed, the day-to-day dilemmas we all face.",
+        "date": "01 Sep 2013",
+        "authors": "Marianne Jennings",
+        "pdf_url": "cfa-publications/pdfs/rflr-v8-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "389fa507-36f3-4530-82df-f7b33a0af854",
+        "title": "Research Foundation Year in Review 2012",
+        "description": "The Year in Review 2013 summarizes the offerings from the CFA Institute Research Foundation over the past year—monographs, literature reviews, workshop presentations, and other relevant material.",
+        "date": "01 Jun 2013",
+        "authors": "Antti Ilmanen, PhD, David Tuckett, Richard Taffler, Zvi Bodie, PhD, Laurence Siegel, Momtchil Pojarliev, CFA, Richard Levich, Stephen Wilcox, PhD, CFA, David Adler, Thomas Oberlechner, Richard Sandor, PhD, Elroy Dimson, FSIP, PhD, Lisa Stanton, CFA",
+        "pdf_url": "cfa-publications/pdfs/rf-v2013-n2-full-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "373f2cef-5def-49bf-b73b-395717f4d1af",
+        "title": "Life Annuities: An Optimal Product for Retirement Income",
+        "description": "This book provides a summary of research on life annuities, longevity insurance, and their role in the “optimal” retirement portfolio.",
+        "date": "01 May 2013",
+        "authors": "Moshe Milevsky",
+        "pdf_url": "cfa-publications/pdfs/rf-v2013-n1-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "88ccf7d1-edbe-4229-aac8-92edeffa67a4",
+        "title": "The Evolution of Asset/Liability Management",
+        "description": "This review tracks the development of asset/liability management from its roots in liability management outsourcing to its most recent interpretation as a broad liability-driven investing strategy.",
+        "date": "01 Jan 2013",
+        "authors": "Ronald Ryan",
+        "pdf_url": "cfa-publications/pdfs/rflr-v8-n2-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "f69c3789-db1a-49ed-a269-e3295969eaf8",
+        "title": "A New Look at Currency Investing",
+        "description": "The authors of this book examine the rationale for investing in currency. They highlight several features of currency returns that make currency an attractive asset class for institutional investors.",
+        "date": "01 Dec 2012",
+        "authors": "Momtchil Pojarliev, CFA, Richard Levich",
+        "pdf_url": "cfa-publications/pdfs/rf-v2012-n4-1-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "df724227-95a7-4666-8318-9273a365b289",
+        "title": "Life-Cycle Investing: Financial Education and Consumer Protection (corrected January 2013)",
+        "description": "Third in the series of Boston University–sponsored conferences titled “The Future of Life-Cycle Saving and Investing,” the May 2011 conference again brought together academic researchers, educators, advisers, and regulators.",
+        "date": "01 Nov 2012",
+        "authors": "CFA Institute Research Foundation",
+        "pdf_url": "cfa-publications/pdfs/rf-v2012-n3-full-pdf.pdf",
+        "image_url": ""
+    },
+    {
+        "id": "a031eba8-1cc6-4517-966e-a7306d700aa2",
+        "title": "Latin American Local Capital Markets",
+        "description": "Challenges that need to be tackled in Chile include the dominance of pension funds ... Governmental and private sector initiatives are needed to improve this scenario. ... Mauro Miranda, CFA",
+        "date": "04 Jun 2018",
+        "authors": "Mauro Miranda, CFA",
+        "pdf_url": "cfa-publications/pdfs/latin_american_local_capital_markets.pdf",
+        "image_url": ""
+    }
+]
