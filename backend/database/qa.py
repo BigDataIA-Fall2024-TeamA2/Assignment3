@@ -17,6 +17,7 @@ class ResearchReport(Base):
     indexed = Column(Boolean, default=False)
     user_id = Column(Integer)
 
+
     # # Relationships
     # article = relationship("Article", back_populates="reports")
     # user = relationship("User", back_populates="reports")
@@ -24,17 +25,13 @@ class ResearchReport(Base):
 class QAHistory(Base):
     __tablename__ = 'qa_history'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    article_id = Column(Integer)
+    id = Column(String, primary_key=True)
+    a_id = Column(String)
     question = Column(String)
     answer = Column(String)
-    confidence_score = Column(Integer)
-    referenced_pages = Column(JSON)
-    media_references = Column(JSON)
+    referenced_pages = Column(String)
     created_at = Column(DateTime, default=datetime.now)
-    validated = Column(Boolean, default=False)
     user_id = Column(Integer)
+    model = Column(String)
 
-    # # Relationships
-    # article = relationship("Article", back_populates="qa_history")
-    # user = relationship("User", back_populates="qa_history")
+    __table_args__ = {'schema': 'public'}

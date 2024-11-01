@@ -1,5 +1,4 @@
-# services/qa.py
-from datetime import datetime
+import uuid
 import json
 from typing import List, Tuple
 from openai import OpenAI
@@ -7,58 +6,34 @@ from openai import OpenAI
 from backend.database import db_session
 from backend.database.qa import ResearchReport, QAHistory
 from backend.schemas.qa import QAResponse, ReportResponse
+from backend.services.rag import get_chat_engine
+
 
 async def process_qa_query(
-    article_id: int,
-    question: str,
+    article_id: str,
+    prompt: str,
     model: str,
-    context_type: str,
-    openai_client: OpenAI,
     user_id: int
 ) -> QAResponse:
     """Process a Q/A query and store the result"""
-    # Get document content
-    # file_contents = await get_pdf_documents(article_id)
-    file_contents = ""
-    # Prepare system prompt
-    system_prompt = (
-        f"You are an AI assistant analyzing a document with {context_type} content. "
-        f"Provide precise answers with references to specific pages and media elements. "
-        f"Document content: {file_contents}"
-    )
-    
-    # Get response from OpenAI
-    completion = await _invoke_openai_api(
-        openai_client,
-        model,
-        question,
-        system_prompt
-    )
-    
-    # Parse response and extract metadata
-    answer, confidence, pages, media = _parse_completion(completion)
-    
-    # Store in database
+    chat_engine = get_chat_engine(user_id, article_id, model)
+    response = chat_engine.chat(prompt)
+
     qa_history = QAHistory(
-        article_id=article_id,
-        question=question,
-        answer=answer,
-        confidence_score=confidence,
-        referenced_pages=pages,
-        media_references=media,
-        user_id=user_id
+        id=uuid.uuid4().hex,
+        a_id=article_id,
+        question=prompt,
+        answer=response.response,
+        referenced_pages=json.dumps([src.model_dump() for src in response.sources]),
+        user_id=user_id,
+        model=model
     )
-    
+
     with db_session() as session:
         session.add(qa_history)
         session.commit()
-    
-    return QAResponse(
-        answer=answer,
-        confidence_score=confidence,
-        referenced_pages=pages,
-        media_references=media
-    )
+
+    return response.response
 
 async def get_qa_history(article_id: int, user_id: int) -> List[dict]:
     """Retrieve Q/A history for an article"""
@@ -91,8 +66,9 @@ async def generate_research_report(
 ) -> ReportResponse:
     """Generate a research report from multiple questions"""
     # Get document content
-    file_contents = await get_pdf_documents(article_id)
-    
+    # file_contents = await get_pdf_documents(article_id)
+    file_contents = ""
+
     # Generate answers for all questions
     answers = []
     media_refs = []

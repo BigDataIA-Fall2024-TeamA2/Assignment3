@@ -6,7 +6,6 @@ from datetime import datetime
 class QARequest(BaseModel):
     question: str
     model: str
-    context_type: str = "text"  # text, image, or both
 
 class QAResponse(BaseModel):
     answer: str

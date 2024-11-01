@@ -30,26 +30,20 @@ qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
     # }
 )
 async def question_answer(
-    article_id: int,
+    article_id: str,
     request: QARequest,
     user_id: int = Depends(get_current_user_id)
-) -> QAResponse:
+):
     """
     Process a Q/A query for a specific article using multi-modal RAG
     """
-    try:
-        return await process_qa_query(
-            article_id,
-            request.question,
-            request.model,
-            request.context_type,
-            user_id
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=str(e)
-        )
+    return {
+        "response": await process_qa_query(
+        article_id,
+        request.question,
+        request.model,
+        user_id
+    )}
 
 @qa_router.get(
     "/{article_id}/history",

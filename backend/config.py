@@ -19,6 +19,8 @@ class Settings(BaseSettings, extra="ignore"):
     MILVUS_CLOUD_PASSWORD: str
     MILVUS_API_KEY: str
     MILVUS_CLOUD_URI: str
+    MILVUS_DOCUMENTS_COLLECTION: str = "DocumentsIndex"
+    MILVUS_REPORTS_COLLECTION: str = "Reports"
 
     # JWT Authentication
     JWT_ACCESS_TOKEN_EXPIRATION_SECONDS: int = 60 * 60 * 3  # 3 hours
