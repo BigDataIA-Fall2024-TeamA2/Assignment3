@@ -50,9 +50,6 @@ import fitz  # PyMuPDF for handling PDFs
 from backend.services.summary_generation import DocumentSummarizer  # Import your summarizer class
 from streamlit_extras.switch_page_button import switch_page
 
-# from backend.utilities.document_processors import load_data_from_directory
-# from backend.utilities.nvidia_utils import set_environment_variables
-from backend.config import settings
 
 def document_viewer_page():
     st.title("Document Viewer")

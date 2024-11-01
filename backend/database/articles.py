@@ -6,12 +6,10 @@ from backend.database import Base
 class ArticleModel(Base):
     __tablename__ = "articles"
 
-    article_id = Column(
-        'article_id',
-        Integer,
-        Sequence('article_id_seq', schema='public'),
+    a_id = Column(
+        'a_id',
+        String,
         primary_key=True,
-        autoincrement=True,
         nullable=False
     )
     title = Column(String(500), nullable=False)

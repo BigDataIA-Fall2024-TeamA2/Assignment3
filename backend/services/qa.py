@@ -7,7 +7,6 @@ from openai import OpenAI
 from backend.database import db_session
 from backend.database.qa import ResearchReport, QAHistory
 from backend.schemas.qa import QAResponse, ReportResponse
-from backend.utilities.document_processors import get_pdf_documents
 
 async def process_qa_query(
     article_id: int,
@@ -19,8 +18,8 @@ async def process_qa_query(
 ) -> QAResponse:
     """Process a Q/A query and store the result"""
     # Get document content
-    file_contents = await get_pdf_documents(article_id)
-    
+    # file_contents = await get_pdf_documents(article_id)
+    file_contents = ""
     # Prepare system prompt
     system_prompt = (
         f"You are an AI assistant analyzing a document with {context_type} content. "

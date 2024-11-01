@@ -12,7 +12,6 @@ from llama_index.llms.nvidia import NVIDIA
 # from backend.utils.nvidia_utils import set_environment_variables
 from backend.config import settings
 
-from backend.utilities.document_processors import load_data_from_directory, load_pdf_file
 from backend.utilities.nvidia_utils import (describe_image, is_graph, process_graph, extract_text_around_item,
     process_text_blocks, save_uploaded_file )
 
@@ -63,8 +62,8 @@ class DocumentSummarizer:
         #
         # print("Generating summary...")
         # summary = self.generate_summary(index, summary_length)
-        documents = load_pdf_file(directory_path)
-        print(f"Found {len(documents)} documents")
+        # documents = load_pdf_file(directory_path)
+        # print(f"Found {len(documents)} documents")
 
         # return summary
         return ""

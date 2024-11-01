@@ -18,22 +18,20 @@ from backend.services.qa import (
     index_report
 )
 from backend.services.auth_bearer import get_current_user_id
-from backend.services.qa import _invoke_openai_api
 
 qa_router = APIRouter(prefix="/chat", tags=["qa-interface"])
 
 @qa_router.post(
     "/{article_id}/qa",
-    response_model=QAResponse,
-    responses={
-        status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
-        status.HTTP_404_NOT_FOUND: {"description": "Article not found"}
-    }
+    # response_model=QAResponse,
+    # responses={
+    #     status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
+    #     status.HTTP_404_NOT_FOUND: {"description": "Article not found"}
+    # }
 )
 async def question_answer(
     article_id: int,
     request: QARequest,
-    openai_client: OpenAI = Depends(_invoke_openai_api),
     user_id: int = Depends(get_current_user_id)
 ) -> QAResponse:
     """
@@ -55,7 +53,7 @@ async def question_answer(
 
 @qa_router.get(
     "/{article_id}/history",
-    response_model=List[ChatHistoryResponse]
+    # response_model=List[ChatHistoryResponse]
 )
 async def get_history(
     article_id: int,
@@ -75,16 +73,15 @@ async def get_history(
 
 @qa_router.post(
     "/{article_id}/generate-report",
-    response_model=ReportResponse,
-    responses={
-        status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
-        status.HTTP_404_NOT_FOUND: {"description": "Article not found"}
-    }
+    # response_model=ReportResponse,
+    # responses={
+    #     status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
+    #     status.HTTP_404_NOT_FOUND: {"description": "Article not found"}
+    # }
 )
 async def create_report(
     article_id: int,
     request: ReportGenerationRequest,
-    openai_client: OpenAI = Depends(_invoke_openai_api),
     user_id: int = Depends(get_current_user_id)
 ) -> ReportResponse:
     """
@@ -106,11 +103,11 @@ async def create_report(
 
 @qa_router.post(
     "/{article_id}/{report_id}/index",
-    response_model=IndexReportResponse,
-    responses={
-        status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
-        status.HTTP_404_NOT_FOUND: {"description": "Report not found"}
-    }
+    # response_model=IndexReportResponse,
+    # responses={
+    #     status.HTTP_401_UNAUTHORIZED: {"description": "Not authenticated"},
+    #     status.HTTP_404_NOT_FOUND: {"description": "Report not found"}
+    # }
 )
 async def validate_and_index_report(
     article_id: int,
@@ -121,8 +118,8 @@ async def validate_and_index_report(
     Validate and index a generated report
     """
     try:
-        status, message = await index_report(article_id, report_id, user_id)
-        return IndexReportResponse(status=status, message=message)
+        _status, message = await index_report(article_id, report_id, user_id)
+        return IndexReportResponse(status=_status, message=message)
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

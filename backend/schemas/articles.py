@@ -15,9 +15,7 @@ class ArticleCreate(ArticleBase):
     pass
 
 class ArticleResponse(ArticleBase):
-    article_id: int
-    created_at: datetime
-    updated_at: datetime
+    a_id: str
 
 class ArticleSummaryRequest(BaseModel):
     article_id: int

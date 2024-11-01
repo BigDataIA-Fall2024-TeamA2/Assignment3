@@ -357,17 +357,17 @@ files = [
 
 [[package]]
 name = "boto3"
-version = "1.35.52"
+version = "1.35.53"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.35.52-py3-none-any.whl", hash = "sha256:ec0e797441db56af63b1150bba49f114b0f885f5d76c3b6dc18075f73030d2bb"},
-    {file = "boto3-1.35.52.tar.gz", hash = "sha256:68299da8ab2bb37cc843d61b9f4c1c9367438406cfd65a8f593afc7b3bfe226d"},
+    {file = "boto3-1.35.53-py3-none-any.whl", hash = "sha256:a9c0955df0b52b43749d81bde159343a40ea2a3537a46049336fe8193871b18e"},
+    {file = "boto3-1.35.53.tar.gz", hash = "sha256:f4124548bb831e13504e805f2fbbfcee06df42fffea0655862c6eb9b95d6d1be"},
 ]
 
 [package.dependencies]
-botocore = ">=1.35.52,<1.36.0"
+botocore = ">=1.35.53,<1.36.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -376,13 +376,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.35.52"
+version = "1.35.53"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.35.52-py3-none-any.whl", hash = "sha256:cdbb5e43c9c3a977763e2a10d3b8b9c405d51279f9fcfd4ca4800763b22acba5"},
-    {file = "botocore-1.35.52.tar.gz", hash = "sha256:1fe7485ea13d638b089103addd818c12984ff1e4d208de15f180b1e25ad944c5"},
+    {file = "botocore-1.35.53-py3-none-any.whl", hash = "sha256:12869640f2f9fab3152ea312a6906d5bc6ae15522cc74b6367ee1c273269a28b"},
+    {file = "botocore-1.35.53.tar.gz", hash = "sha256:e610ae076ad1eaed5680d3990493659bbabdffd67b15c61d8373a23e4bc41062"},
 ]
 
 [package.dependencies]
@@ -1840,13 +1840,13 @@ pydantic = ">=1.10"
 
 [[package]]
 name = "llama-index"
-version = "0.11.20"
+version = "0.11.21"
 description = "Interface between LLMs and your data"
 optional = false
 python-versions = "<4.0,>=3.8.1"
 files = [
-    {file = "llama_index-0.11.20-py3-none-any.whl", hash = "sha256:fc9e5e47e6da3610bc3b788d208bb782c03a342fd71e3b22b37abc83ecebe46e"},
-    {file = "llama_index-0.11.20.tar.gz", hash = "sha256:5e8e3fcb5af5b4e4525498b075ff0a54160b00bf0fc0b83801fc7faf1c8a8c1d"},
+    {file = "llama_index-0.11.21-py3-none-any.whl", hash = "sha256:d524c2ff13b1d1c289a3e2cf271806d797cf829205759125bcaac03dac450466"},
+    {file = "llama_index-0.11.21.tar.gz", hash = "sha256:392b8f952fa72df3f6bf50b161eaa0ff95335e9c1a43af0ae90205d4f0c9e21c"},
 ]
 
 [package.dependencies]
@@ -1898,13 +1898,13 @@ llama-index-llms-openai = ">=0.2.0,<0.3.0"
 
 [[package]]
 name = "llama-index-core"
-version = "0.11.20"
+version = "0.11.21"
 description = "Interface between LLMs and your data"
 optional = false
 python-versions = "<4.0,>=3.8.1"
 files = [
-    {file = "llama_index_core-0.11.20-py3-none-any.whl", hash = "sha256:e84daf45e90e4b5d9e135baf40ab9853a1c3169a1076af6d58739d098e70adb1"},
-    {file = "llama_index_core-0.11.20.tar.gz", hash = "sha256:6b5eaaf4be5030808b9ba953e8f7aead7ba495b8e72ba0a81dfc7dda96be416f"},
+    {file = "llama_index_core-0.11.21-py3-none-any.whl", hash = "sha256:08d0a605d022127f2eee45d2000b19d1b95fc6f1f3387c8424d924dfa795882d"},
+    {file = "llama_index_core-0.11.21.tar.gz", hash = "sha256:720b6e57e5350a72a22657caa69a8a871fa3da3b37edc2adf4a0bde8e5790ad3"},
 ]
 
 [package.dependencies]
@@ -3428,13 +3428,13 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pydantic-settings"
-version = "2.6.0"
+version = "2.6.1"
 description = "Settings management using Pydantic"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "pydantic_settings-2.6.0-py3-none-any.whl", hash = "sha256:4a819166f119b74d7f8c765196b165f95cc7487ce58ea27dec8a5a26be0970e0"},
-    {file = "pydantic_settings-2.6.0.tar.gz", hash = "sha256:44a1804abffac9e6a30372bb45f6cafab945ef5af25e66b1c634c01dd39e0188"},
+    {file = "pydantic_settings-2.6.1-py3-none-any.whl", hash = "sha256:7fb0637c786a558d3103436278a7c4f1cfd29ba8973238a50c5bb9a55387da87"},
+    {file = "pydantic_settings-2.6.1.tar.gz", hash = "sha256:e0f92546d8a9923cb8941689abf85d6601a8c19a23e97a34b2964a2e3f813ca0"},
 ]
 
 [package.dependencies]
@@ -3548,6 +3548,7 @@ python-versions = ">=3.9"
 files = [
     {file = "PyMuPDF-1.24.13-cp39-abi3-macosx_10_9_x86_64.whl", hash = "sha256:c11bb9198af69d490b4b346421db827d875a28fbc760d239e691d4b3ed12b5ad"},
     {file = "PyMuPDF-1.24.13-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:240d5c43daa9278db50d609162b48f673ab256d7e5c73eea67af517c1fc2d47c"},
+    {file = "PyMuPDF-1.24.13-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:e4c8808e62afbbde0f7b9c4151c4b1a5735911c2d39c34332860df600dba76f8"},
     {file = "PyMuPDF-1.24.13-cp39-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:c830610e4fde237fcf0532f1f8c1381453f48c164a5eadd0c6e5fd0bea1ca8e3"},
     {file = "PyMuPDF-1.24.13-cp39-abi3-musllinux_1_2_x86_64.whl", hash = "sha256:4520558580ac6b5a7164fda29fbc14e39d3114fd803420721500edbf47d04872"},
     {file = "PyMuPDF-1.24.13-cp39-abi3-win32.whl", hash = "sha256:ab22828d4fc205791ef1332a64893cbfc38cd9c331c5f46ae4537372ffee6fc1"},
