@@ -116,8 +116,6 @@ def document_viewer_page():
                     num_pages = pdf.page_count
                     st.write(f"Total Pages: {num_pages}")
 
-                    
-                    
                     # Display text content for each page
                     for page_num in range(num_pages):
                         page = pdf[page_num]
@@ -148,8 +146,8 @@ def document_viewer_page():
                     # except requests.exceptions.RequestException as e:
                     #     st.error(f"Error generating summary: {str(e)}")
                 
-                st.subheader("Generated Summary")
-                st.write(summary_data['summary'])
+                    st.subheader("Generated Summary")
+                    st.write(summary_data['summary'])
             except Exception as e:
                 st.error(f"Error loading PDF: {str(e)}")
     else:
