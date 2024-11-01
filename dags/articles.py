@@ -25,11 +25,12 @@ def convert_date(date_string):
 # Function to insert an article
 def insert_article(cursor, article):
     insert_query = """
-    INSERT INTO ARTICLES (TITLE, DESCRIPTION, PUBLICATION_DATE, AUTHORS, PDF_URL, IMAGE_URL)
-    VALUES (%s, %s, %s, %s, %s, %s)
+    INSERT INTO ARTICLES (A_ID, TITLE, DESCRIPTION, PUBLICATION_DATE, AUTHORS, PDF_URL, IMAGE_URL)
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
     """
     converted_date = convert_date(article['date'])
     cursor.execute(insert_query, (
+        article['id'],  # Use 'id' from JSON as A_ID
         article['title'],
         article['description'],
         converted_date,
@@ -70,6 +71,7 @@ def insert_articles_from_json(json_file_path):
             # Create the table if it doesn't exist
             create_table_query = """
             CREATE TABLE IF NOT EXISTS ARTICLES (
+                A_ID STRING,  # Changed to STRING to accommodate UUID
                 TITLE STRING,
                 DESCRIPTION STRING,
                 PUBLICATION_DATE DATE,
@@ -100,13 +102,7 @@ def insert_articles_from_json(json_file_path):
         cursor.close()
         conn.close()
 
-
-def get_all_articles():
-    get_query = """
-    SELECT ARTICLE_ID, 
-    """
-
 if __name__ == "__main__":
     # Specify the path to your JSON file
-    json_file_path = r"D:\Projects\Assignment3\dags\updated_articles_data.json"
+    json_file_path = "updated_articles_data.json"
     insert_articles_from_json(json_file_path)
