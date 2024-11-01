@@ -25,6 +25,13 @@ python-jose = "^3.3.0"
 openai = "^1.52.2"
 pymupdf = "^1.24.13"
 llama-index = "^0.11.20"
+streamlit-extras = "^0.5.0"
+llama-index-vector-stores-milvus = "^0.2.7"
+llama-index-readers-file = "^0.2.2"
+llama-index-llms-nvidia = "^0.2.6"
+llama-index-embeddings-nvidia = "^0.2.4"
+python-pptx = "^1.0.2"
+diagrams = "^0.23.4"
 
 
 [tool.poetry.group.dev.dependencies]

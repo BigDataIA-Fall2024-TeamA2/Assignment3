@@ -19,7 +19,7 @@ import fitz
 from pptx import Presentation
 import subprocess
 from llama_index.core import Document
-from backend.utils.nvidia_utils import (
+from backend.utilities.nvidia_utils import (
     describe_image, is_graph, process_graph, extract_text_around_item, 
     process_text_blocks, save_uploaded_file
 )
@@ -248,6 +248,18 @@ def load_multimodal_data(files):
             doc = Document(text=text, metadata={"source": file.name, "type": "text"})
             documents.append(doc)
     return documents
+
+def load_pdf_file(pdf_path):
+    documents =[]
+    with open(pdf_path, "rb") as pdf_file:
+        try:
+            pdf_documents = get_pdf_documents(pdf_file)
+            documents.extend(pdf_documents)
+        except Exception as e:
+            print(f"Error processing PDF {pdf_path}: {e}")
+    
+    return documents
+
 
 def load_data_from_directory(directory):
     """Load and process multiple file types from a directory."""
