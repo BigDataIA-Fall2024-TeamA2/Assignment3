@@ -6,8 +6,8 @@ This application is a sophisticated Retrieval-Augmented Generation (RAG) system 
 
 Links to Resources:
 1. [CodeLabs Link](https://codelabs-preview.appspot.com/?file_id=17gEwdjYbRR4qBIRmAqFPeYRKOlSqthT9UAZr5AXWEJc#0)
-2. [Deployed Streamlit Frontend](http://44.212.13.198:8501/)
-3. [Deployed FastAPI Backend](http://44.212.13.198:8000/docs/)
+2. [Deployed Streamlit Frontend](http://54.159.154.10:8501/)
+3. [Deployed FastAPI Backend](http://54.159.154.10:8000/docs/)
 4. [Demo Video](video/video.mov)
 
 
